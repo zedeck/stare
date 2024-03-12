@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - mie.era.mvc</title>
+
+
+    <link href="~/bootstrap-5.3.2-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/mie.era.mvc.styles.css" asp-append-version="true" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/sweetalert2@11/dist/sweetalert2.min.css" />
+    <style>
+        .chart-container {
+            width: 60%;
+            height: 10%;
+            margin: auto;
+        }
+
+        .table tbody tr:hover td, .table tbody tr:hover th {
+            background-color: #e1e4eb;
+        }
+
+        .nav-link:hover {
+            background-color: #e1e4eb;
+            width: 100%;
+            height: 100%;
+        }
+
+        .candidates-table th {
+            background-color: #008A8A;
+            color: white;
+            font-size:smaller;
+        }
+
+        .dashboard:hover {
+            background-color: #e1e4eb;
+        }
+
+        .era_spinner {
+            background-color: #e1e4eb;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <!-- Side Menu Bar-->
+                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-white">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white border-end">
+                        <div class="list-group-item list-group-item-action py-2 ms-5 ripple">
+                            <img src="~/images/eralogo.png"
+                                 height="60"
+                                 alt="Era Logo"
+                                 loading="lazy" />
+                        </div>
+                        <br />
+             
+                        <ul class="nav nav-pills  flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start row col-12" id="menu">
+
+                            @if (Context.User.Identity!.IsAuthenticated){
+                            <li class="nav-link">
+                                <a asp-controller="Profile" asp-action="Index" class="nav-link align-middle px-3 text-dark">
+                                   <i class="fs-4 bi bi-person-circle"></i> 
+                                  
+                                    @{
+                                        string? ProfileName = Context.User.Identity!.Name;
+                                        string[] names = ProfileName!.Split('\\');
+                                        string name = names[1].Remove(names[1].Length - 1);
+                                        char[] goodName = name.ToCharArray();
+                                        goodName[0] = char.ToUpper(goodName[0]);
+                                        string UserName = new string(goodName);
+                                        UserName = UserName.TrimStart();
+                                     
+                                            <span class="ms-3 d-none d-sm-inline" style="color: indianred;">@UserName</span>
+                                        
+                                    }
+                                </a>
+                            </li>
+                            }
+
+                            <li class="nav-link">
+                                <a asp-controller="Home" asp-action="Index" class="nav-link align-middle px-3 text-dark">
+                                    <i class="fs-4 bi bi-house"></i><span class="ms-3 d-none d-sm-inline">Home</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-link">
+                                <a asp-controller="Candidates" asp-action="Index" class="nav-link align-middle px-3 text-dark">
+                                    <i class="fs-4 bi bi-people"></i><span class="ms-3 d-none d-sm-inline">Candidates</span>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-link">
+                                <a asp-controller="Referees" asp-action="Index" class="nav-link align-middle px-3 text-dark">
+                                    <i class="fs-4 bi bi-check-circle"></i><span class="ms-3 d-none d-sm-inline">References</span>
+                                </a>
+                            </li>
+
+                            
+                            <!--<li class="nav-link">
+                                <a asp-controller="Questionnaire" asp-action="Index" class="nav-link align-middle px-3 text-dark">
+                                    <i class="fs-4 bi bi-file"></i><span class="ms-3 d-none d-sm-inline">Questionnaire</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-link">
+                                <a asp-controller="Settings" asp-action="Index" class="nav-link align-middle px-3 text-dark">
+                                    <i class="fs-4 bi bi-gear"></i><span class="ms-3 d-none d-sm-inline">Settings</span>
+                                </a>
+                            </li>-->
+                        </ul>
+                        <hr>
+
+                    </div>
+                </div>
+
+
+                <!-- NavBar -->
+                <div class=" col-10">
+                       @if (ViewContext.RouteData.Values["Controller"].ToString() == "Candidates")
+                    {
+                        <nav class="border-bottom border-2 navbar">
+                            <div class="container-fluid">
+
+                                <form class="d-flex" role="search">
+
+
+
+                                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                                    <button class="btn text-white" type="button" style="background-color: #008A8A;">
+                                        <span class="bi bi-toggles2 form-control-feedback"></span>
+                                    </button>
+
+                                    <button class="btn text-white" type="button" style="position: absolute; right: 0; background-color: #008A8A;">
+                                        <span class="bi bi-pencil-square form-control-feedback"></span>
+                                        New Request
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+
+                        </nav>
+
+                    }
+
+                    <!-- Render Body-->
+
+                    <div class="col py-1">
+                        @RenderBody()
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </header>
+    <!-- Footer -->
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - ERA <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"> </script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="~/chartJs/Chart.js"></script>
+    <script>
+        const ctx = document.getElementById("chart").getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["01 January 2024", "08 January 2024", "15 January 2024", "22 January 2024"],
+                datasets: [{
+                    label: 'sent references',
+
+                    borderColor: 'rgb(15, 18, 209)',
+                    data: [20, 40, 69, 100],
+                },
+                {
+                    label: 'completed references',
+
+                    borderColor: 'rgb(47, 128, 237)',
+                    data: [19, 38, 58, 23],
+                },
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                        }
+                    }]
+                }
+            },
+        });
+
+        
+    </script>
+
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

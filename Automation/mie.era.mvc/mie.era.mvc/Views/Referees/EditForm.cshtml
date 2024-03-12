@@ -1,0 +1,564 @@
+﻿@using static mie.era.mvc.Controllers.HelperController;
+
+@{
+    ViewData["Title"] = "EditForm";
+   
+}
+
+
+ <div class="text-left">
+
+    @if(@ViewBag.Message == "NotFiled")
+        {
+            <div class="border-bottom border-2">
+                <h4 class="display-12">Manually filing for reference: @ViewBag.Reference</h4>
+            </div>
+        <style>
+            #dvScroll {
+                max-height: 800px !important;
+                overflow-y: auto !important;
+                background: #e9ede6 !important;
+            }
+
+
+            .multiSelectDropdown {
+                width: 12rem;
+                height: 1.5rem;
+                font-size: 1.3rem;
+                padding: 0.5rem;
+                background-color: aqua;
+                cursor: pointer;
+                border-radius: 10px;
+                border: 2px solid yellow;
+            }
+
+            #multiSelectOptions {
+                margin: 0.5rem 0;
+                width: 12rem;
+                background-color: lightgrey;
+                display: none;
+                flex-direction: column;
+                border-radius: 12px;
+            }
+
+
+        </style>
+        <div class="col-12">
+            <div class="container col-12" id="dvScroll">
+
+                @Html.Raw(ViewBag.Form)
+
+            </div>
+        </div>
+        }
+        else
+        {
+         
+            @if(ViewBag.Message == "Filed")
+            {
+
+            string reqKey = string.Empty;
+
+            <form method="POST" id="editForm" class="w-100 rounded-1 p-4 border bg-secondary text-dark bg-opacity-10 needs-validation" action="@ViewBag.PostEditedAnswersUrl" enctype="multipart/form-data" novalidate>
+                <br>
+                <br>
+                <h3 class="fw-bold text-dark">Reference Questions and Answers</h3>
+                <br>
+
+                <div class="border-bottom border-2">
+                    <h4 class="display-12">Editing reference :@ViewBag.Reference</h4>
+                </div>
+                <div class="container-fluid text-left">
+                    
+
+                @{
+                    int questionNumber = 1;
+                    
+                }
+
+                @foreach(var qaItem in ViewBag.Model)
+                {
+                    reqKey = qaItem.RequestKey;
+
+                    @switch(@qaItem.AnswerType)
+                    {
+                        case "TextInput":
+                            <label class="d-block mb-4" for="Control'@qaItem.QuestionID'">
+                                    <span class="form-label d-block">@($"Q{questionNumber++}"). @qaItem.Question </span>
+                                <input class="form-control" type="text" id="Control'@qaItem.QuestionID'" name="TextInput-'@qaItem.QuestionID'" value="@qaItem.Answer" required />
+                                 <a class="invalid-feedback"> Please provide a valid text input</a>
+                                </label>
+                            <br />
+                            <hr class="my-1">
+                            
+                            break;
+
+                        case "YesNo":
+
+                            string IsYesChecked = "checked";
+                            string IsNoChecked = "checked";
+                            @if (@qaItem.Answer == "Yes")
+                            {
+                                IsNoChecked = "";
+                            }
+                            else
+                            {
+                                IsYesChecked = "";
+                            }
+                           
+                            <br />
+
+                                <span class="form-label d-block" for="Control'@qaItem.QuestionID'">@($"Q{questionNumber++}"). "@qaItem.Question</span>
+                            <fieldset>
+                                <div>
+                                    <input class="form-check-input" type="radio" name="YesNo-'@qaItem.QuestionID'" id="flexRadioDefault'@qaItem.QuestionID'No" value="No" @IsNoChecked>
+                                    <label class="form-check-label" for="flexRadioDefault'@qaItem.QuestionID'No">
+                                        No
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="radio" name="YesNo-'@qaItem.QuestionID'" id="flexRadioDefault'@qaItem.QuestionID'Yes" value="Yes" @IsYesChecked required >
+                                    <label class="form-check-label" for="flexRadioDefault'@qaItem.QuestionID'Yes">
+                                        Yes
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Please select a valid option.
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <br />
+                            <hr class="my-1">
+                            break;
+
+                        case "DropDown":
+                            //Get options 
+                            string optionsString = string.Empty; 
+                            int optionsCntr = 0;
+                            foreach (var optionItem in ViewBag.AnswerOptions)
+                            {
+                                if (optionItem.QuestionID == qaItem.QuestionID)
+                                {
+                                    if(optionsCntr == 0){
+                                        optionsString = optionItem.AnswerOptions;
+                                        optionsCntr++;
+                                    }
+                                    else
+                                    {
+                                        optionsString += ("," + optionItem.AnswerOptions);
+                                        
+                                    }
+
+                                }
+
+                            }
+
+                            string[] options = optionsString.Split(",");
+                            
+                            <br />
+
+                                <span class="form-label d-block" for="Control'@qaItem.QuestionID'">@($"Q{questionNumber++}"). @qaItem.Question</span>
+                            <select class="form-select" id="Control'@qaItem.QuestionID'" name="DropDown-'@qaItem.QuestionID'"  required>
+                                <option selected>@qaItem.Answer</option>
+                              
+
+                                                         
+                            @foreach (string option in options)
+                            {
+                                    @if(option != @qaItem.Answer){
+                                        <option value="@option"> @option </option>
+                                    }
+
+                            }
+
+                                
+                            </select>
+                            <div class="invalid-feedback">Please select an option.</div>
+                            break;
+
+                        case "RatingInput":
+                            string[] isSelected = { "", "", "", "", "" };
+                            if (@qaItem.Answer != null)
+                            {
+
+                                int index = Convert.ToInt16(@qaItem.Answer);
+                                if (index > 0)
+                                    isSelected[index - 1] = "checked";
+
+                            }
+
+                             <br />
+                             <label class="d-block mb-4" for="Control'@qaItem.QuestionID'"></label>
+                                <span class="form-label d-block">@($"Q{questionNumber++}"). @qaItem.Question</span>
+                                <div class="rate py-3 mt-3">
+                                    <div class="form-control rating">
+                                    <input type="radio" name="RatingInput-'@qaItem.QuestionID'" value="5" id="1-'@qaItem.QuestionID'" @isSelected[4] required>
+                                        <label for="1-'@qaItem.QuestionID'">&#9734;</label>
+                                    <input type="radio" name="RatingInput-'@qaItem.QuestionID'" value="4" id="2-'@qaItem.QuestionID'" @isSelected[3] required>
+                                        <label for="2-'@qaItem.QuestionID'">&#9734;</label>
+                                    <input type="radio" name="RatingInput-'@qaItem.QuestionID'" value="3" id="3-'@qaItem.QuestionID'" @isSelected[2] required>
+                                        <label for="3-'@qaItem.QuestionID'">&#9734;</label>
+                                    <input type="radio" name="RatingInput-'@qaItem.QuestionID'" value="2" id="4-'@qaItem.QuestionID'"  @isSelected[1] required>
+                                        <label for="4-'@qaItem.QuestionID'">&#9734;</label>
+                                    <input type="radio" name="RatingInput-'@qaItem.QuestionID'" value="1" id="5-'@qaItem.QuestionID'"  @isSelected[0] required>
+                                        <label for="5-'@qaItem.QuestionID'">&#9734;</label>
+                                    </div>
+                                </div>
+                               <br />
+                            <hr class="my-1">
+                            break;
+
+                        case "TextArea":
+                            <br>
+
+                            <label class="d-block mb-4" for="Control'@qaItem.QuestionID'">
+                                <span class="form-label d-block">
+                                        @($"Q{questionNumber++}"). @qaItem.Question
+                                </span>
+                            </label>
+
+                            <input class="form-control" type="text" id="Control'@qaItem.QuestionID'" name="TextInput-'@qaItem.QuestionID'" value="@qaItem.Answer" required>        
+                                <div class="invalid-feedback">
+                                    Please insert valid text.
+                                </div>
+                            <br>
+                                <hr class="my-1">
+                                break;
+
+                            case "MultipleChoice":
+
+                                string[] selectedAnswers = qaItem.Answer.Split(",");
+
+                            string multiOptionsString = string.Empty;
+                            int multiOptionsCntr = 0;
+                            foreach (var multiOptionItem in ViewBag.AnswerOptions)
+                            {
+                                if (multiOptionItem.QuestionID == qaItem.QuestionID)
+                                {
+                                    if (multiOptionsCntr == 0)
+                                    {
+                                        multiOptionsString = multiOptionItem.AnswerOptions;
+                                        multiOptionsCntr++;
+                                    }
+                                    else
+                                    {
+                                        multiOptionsString += ("," + multiOptionItem.AnswerOptions);
+
+                                    }
+
+                                }
+
+                            }
+
+                            string[] multiOptions = multiOptionsString.Split(",");
+                            
+
+                            <br>
+
+                            <label class="d-block mb-4" for="Control'@qaItem.QuestionID'">
+                                <span class="form-label d-block">
+                                        @($"Q{questionNumber++}"). @qaItem.Question
+                                    </span>
+                            </label>
+                            
+                                
+                               
+                                <div class="multiSelectDropdown form-select" onclick="showOptions()">
+                                    <div id="multiSelectOptionsX-'@qaItem.QuestionID'">
+
+
+                                        @{
+                                            
+                                            @foreach (string option in multiOptions)
+                                            {
+                                                @if (selectedAnswers.Contains(option))
+                                                {
+                                                
+                                                    <label for="multiSelectOptions-'@qaItem.QuestionID'">
+                                                        <input type="checkbox" name="multiSelectOptions-'@qaItem.QuestionID'" id="multiSelectOptions-'@qaItem.QuestionID'" value="@option" checked/>
+                                                        @option
+                                                    </label>
+                                                    <br />
+                                                }
+                                                else
+                                                {
+                                              
+                                                    <label for="multiSelectOptions-'@qaItem.QuestionID'">
+                                                        <input type="checkbox" name="multiSelectOptions-'@qaItem.QuestionID'" id="multiSelectOptions-'@qaItem.QuestionID'" value="@option" />
+                                                        @option
+                                                    </label>
+                                                    <br />
+                                                }
+                                            }
+                                        }
+                                                                                  
+                                   
+                                      
+                                    </div>
+                                </div>
+                               
+                            
+                                <div class="invalid-feedback">
+                                    Please select a valid option.
+                                </div><br>
+                            
+                            <br>
+                            <hr class="my-1">
+                            break;
+                       
+                        case "DateTime":
+                            break;
+
+                        case "NumericInput":
+
+                            <br>
+                            <label class="d-block mb-4 fontStyle" for="Control'@qaItem.QuestionID'">
+                                <span class="form-label d-block">
+                                        @($"Q{questionNumber++}"). @qaItem.Question
+                                </span>
+                            </label>
+                            <input class="form-control" type="number" id="Control'@qaItem.QuestionID'" name="NumericInput-'@qaItem.QuestionID'" min="1" max="100" value="@qaItem.Answer" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid numeric input.
+                                </div>
+                          
+                            <br>
+                            <hr class="my-1">
+                                                       
+                            break;
+
+                        default: <input class="form-control visually-hidden" type="text" id="RequestControl" name="RequestKey" value="@qaItem.RequestKey">
+                            <br>
+                            break;
+
+                    }
+                   
+                }
+                    <input class="form-control visually-hidden" type="text" id="RequestKey" name="RequestKey"
+                           value="@reqKey"/>
+                     <br>
+                </div>
+
+                <br>
+                <div class="mb-3">
+
+                    <button type="submit" id="submitForm" class="btn btn-outline-primary btn-lg px-3 rounded-3">
+                        Approve
+                    </button>
+
+                
+                </div>
+            </form>
+            
+            }
+     }
+       
+ </div>   
+ 
+
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------->
+@section Scripts{
+
+    <script>
+
+        //On load script
+        $(document).ready(function(){
+
+            if ('@ViewBag.Message' === 'NoRecordFound') {
+
+                let timerInterval = 1000;
+                Swal.fire({
+                    icon: "error",
+                    title: "Sorry!",
+                    html: "This reference is now in a completed state.<br >You will be redirected back in few seconds.",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        const timer = Swal.getPopup().querySelector("b");
+                        timerInterval = setInterval(() => {
+                            timer.textContent = `${Swal.getTimerLeft()}`;
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then((result) => {
+
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        window.history.back();
+                    }
+                });
+            }
+
+            //----------------------------------------------
+            //----------------------------------------------
+            if ('@ViewBag.Message' === 'NoFilledFormFound') {
+
+                let timerInterval = 1000;
+                Swal.fire({
+                    icon: "error",
+                    title: "Sorry!",
+                    html: "This reference is not found.<br >You will be redirected back in few seconds.",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        const timer = Swal.getPopup().querySelector("b");
+                        timerInterval = setInterval(() => {
+                            timer.textContent = `${Swal.getTimerLeft()}`;
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then((result) => {
+
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        window.history.back();
+                    }
+                });
+            }
+            //----------------------------------------------
+            //----------------------------------------------
+            if ('@ViewBag.Message' === 'Expired') {
+
+                Swal.fire({
+                    title: "Expired!!!",
+                    text: "This reference has expire!!!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Renew!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Renewed!",
+                            text: "Your reference is being renewed,you will receive a correspondance shortly.",
+                            icon: "success"
+                        }).then(function () {
+
+                            $.ajax({
+                                type: "GET",
+                                dataType: "json",
+                                url: '@ViewBag.ReferenceRenewUrl',
+                                success: function (data) {
+                                    window.history.back();
+                                },
+                                error: function (error) {
+
+                                    jsonValue = jQuery.parseJSON(error.responseText);
+                                    alert("error" + error.responseText);
+                                }
+                            });
+
+
+                        });
+
+                    }
+                    else {
+                        window.history.back();
+                    }
+                    
+                });
+
+            }
+            //----------------------------------------------
+            //----------------------------------------------
+            if ('@ViewBag.Message' === 'SystemError') {
+
+                let timerInterval = 1000;
+                Swal.fire({
+                    icon: "error",
+                    title: "Sorry!",
+                    html: "This reference is not found.<br >You will be redirected back in few seconds.",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        const timer = Swal.getPopup().querySelector("b");
+                        timerInterval = setInterval(() => {
+                            timer.textContent = `${Swal.getTimerLeft()}`;
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then((result) => {
+
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        window.history.back();
+                    }
+                });
+            }
+            //----------------------------------------------
+            //----------------------------------------------
+            if ('@ViewBag.Message' === 'NoUnFilledFormFound') {
+
+                let timerInterval = 1000;
+                Swal.fire({
+                    icon: "error",
+                    title: "Sorry!",
+                    html: "This reference is not found.<br >You will be redirected back in few seconds.",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        const timer = Swal.getPopup().querySelector("b");
+                        timerInterval = setInterval(() => {
+                            timer.textContent = `${Swal.getTimerLeft()}`;
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then((result) => {
+
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        window.history.back();
+                    }
+                });
+            }
+
+        });
+
+
+     
+
+        //-----------
+        $('#submitForm').click(function () {
+
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+
+                        $(form).find("[class^='form-']:invalid").first().focus();
+
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+
+            })
+            if ($('form')[0].checkValidity()) {
+
+                Swal.fire({
+                    title: "Thank You!",
+                    text: "Your updates are submitted successfully!",
+                    type: "success"
+                }).then(function () {
+
+                    window.history.back();
+                });
+
+            }
+
+        });
+    </script>
+
+
+}

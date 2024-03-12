@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
+using BackendAPI.Database;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+
+namespace BackendAPI.Services
+{
+    public class RefereesService
+    {
+        private readonly ERADBContext _context;
+
+        public RefereesService(ERADBContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
+
+<<<<<<< HEAD
+       
+
+        public async Task<List<Referee>> GetRefereesWithCompletedReferencesAsync(CancellationToken cancellationToken = default)
+=======
+        //public async Task<List<RefereeInfo>> GetRefereesWithCompletedReferencesAsync()
+        //{
+        //    try
+        //    {
+        //        var result = await (
+        //            from rq in _context.Requests
+        //            join rf in _context.Referees on rq.RefereeId equals rf.Refereeid into refereeGroup
+        //            from rf in refereeGroup.DefaultIfEmpty()
+        //            join n in _context.Notifications on rq.RefereeId equals n.RefereeId into notificationGroup
+        //            from n in notificationGroup.DefaultIfEmpty()
+        //            where rq.QuestionSetId > 0
+        //            select new RefereeInfo
+        //            {
+        //                RefereeID = rf.Refereeid,
+        //                Name = rf.Name,
+        //                Email = rf.Email,
+        //                PhoneNumber = rf.PhoneNumber,
+        //                Relationship = rf.Relationship,
+        //                RemoteKey = rq.RemoteKey,
+        //                Status = rq.Status,
+        //                RequestDate = (DateTime)rq.RequestDate,
+        //                NotificationType = n.NotificationType,
+        //                NotificationStatus = n.NotificationStatus
+        //            })
+        //            .ToListAsync();
+
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log or handle the exception appropriately
+        //        throw;
+        //    }
+        //}
+
+        //public class RefereeInfo
+        //{
+        //    // Ensure property names do not conflict with each other or with base class properties
+        //    public int RefereeID { get; set; }
+        //    public string Name { get; set; }
+        //    public string Email { get; set; }
+        //    public string PhoneNumber { get; set; }
+        //    public string Relationship { get; set; }
+        //    public string RemoteKey { get; set; }
+        //    public string Status { get; set; }
+        //    public DateTime RequestDate { get; set; }
+        //    public string NotificationType { get; set; }
+        //    public string NotificationStatus { get; set; }
+        //}
+
+        //----------------------------------- Reading the stored procedure-------------------
+
+        public async Task<List<RefereeInfo>> GetRefereesWithCompletedReferencesAsync(CancellationToken cancellationToken = default)
+>>>>>>> origin/Thobani/feat/references
+        {
+            try
+            {
+                var startDate = DateTime.Now.AddMonths(-1);
+                var endDate = DateTime.Now;
+
+<<<<<<< HEAD
+                var result = await _context.Referees
+=======
+                var result = await _context.RefereesInfo
+>>>>>>> origin/Thobani/feat/references
+                    .FromSqlRaw("EXEC USP_GetRefereeUpdate @StartDate, @EndDate, @p1, @p2",
+                        new SqlParameter("@StartDate", startDate),
+                        new SqlParameter("@EndDate", endDate),
+                        new SqlParameter("@p1", 1),
+                        new SqlParameter("@p2", 2))
+                    .ToListAsync(cancellationToken).ConfigureAwait(false);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public class RefereeInfo
+        {
+            public int? UserID { get; set; }
+            public DateTime? RequestDate { get; set; }
+            public DateTime? ModifiedDate { get; set; }
+            public string? Status { get; set; }
+            public int? QuestionSetID { get; set; }
+            public string? RemoteKey { get; set; }
+            public int? RequestID { get; set; }
+            public string? Name { get; set; }
+            public string? Email { get; set; }
+            public string? PhoneNumber { get; set; }
+            public bool? IsActive { get; set; }
+            public string? Relationship { get; set; }
+            public string? CandidateName { get; set; }
+            public string? CandidateSurname { get; set; }
+            public DateTime? CandidateDOB { get; set; }
+            public string? CandidateCell { get; set; }
+            public string? CandidateEmail { get; set; }
+            public string? CandidateId { get; set; }
+            public string? CandidatePassport { get; set; }
+            public string? SigEmail { get; set; }
+            public string? SigName { get; set; }
+        }
+    }
+}

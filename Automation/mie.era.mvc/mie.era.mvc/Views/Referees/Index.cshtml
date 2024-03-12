@@ -1,0 +1,440 @@
+﻿@model mie.era.mvc.Models.ReferenceViewModel
+
+@using mie.era.mvc.Helpers
+
+@inject IConfiguration config
+@{
+    string baseAddress = config.GetConnectionString("ERABackendEndpoint");
+    string baseAddressFE = config.GetConnectionString("ERAFEEndpointAPI");
+}
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="~/Jquery-3.7.1/jquery-3.7.1.min.js"></script>
+
+<style>
+    .home {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    h4::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px; /* Adjust the height of the overline */
+        background-color: black; /* Change the color of the overline */
+    }
+
+    .box {
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #008A8A;
+        text-align: center;
+        transition: transform 0.3s ease;
+        background-color: #008A8A;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .dashboard {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+        .dashboard img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .dashboard .title {
+            color: grey;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    .graph {
+        width: calc(100% - 4px); /* Adjusted width to account for the border (2px border on each side) */
+        height: 400px;
+        background-color: white;
+        border-radius: 10px;
+        border: 2px solid #ddd; /* Added border */
+    }
+
+    .dashboard-container {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        min-height: 100vh;
+    }
+
+    .dashboard {
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+
+    .home-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        padding: 20px;
+    }
+
+    .box5 {
+        grid-column: span 2;
+    }
+
+    .refereeTable {
+        max-height: 600px !important;
+        overflow-y: auto !important;
+        background: #e9ede6 !important;
+    }
+
+    .searchInput[type=text] {
+        width: 450px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        padding: 12px 2px 12px 2px;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        
+        transition: width 0.4s ease-in-out;
+    }
+
+
+
+
+</style>
+
+<div>
+    <br />
+    <div class="row col-12">
+        <div class="d-flex col-md-4">
+            <div class="card text-white shadow box">
+                <div>
+                    <div class="row col-12 p-0">
+                        <i class="bi bi-people fs-2 col-2"> </i>
+                        <span class="col-8 text-center">Total number of references </span>
+                        <div class="text-white col-12 text-center ms-2 "><h5>@Model.CompletedReferencesCount / @Model.TotalReferencesCount</h5></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex col-md-4">
+            <div class="card text-white shadow box">
+                <div>
+                    <div class="row col-12 p-0">
+                        <i class="bi bi-alarm fs-2 col-2"> </i>
+                        <span class="col-10 text-center">Average Completion Time</span>
+                        <div class="text-white col-12 text-center ms-3 "><h5>@Model.AverageCompletionTime.ToString("#.##")</h5></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex col-md-4">
+            <div class="card text-white shadow box">
+                <div>
+                    <div class="row col-12 p-0">
+                        <i class="bi bi-cast fs-2 col-2"> </i>
+                        <span class="col-10 text-center">Average Candidate Score</span>
+                        <div class="text-white col-12 text-center ms-3 "><h5>@Model.AverageCandidateScore.ToString("#.##")</h5></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+
+
+   @*  <h4 style="text-align: left; text-decoration:overline; width:100%">Referees</h4> *@
+    <hr />
+        <table>
+            <tr>
+                <td>
+                    <input id="filterInput" type="text" class="form-control ms-2 searchInput" placeholder="Search References (RemoteKey/Candidate/Agent)" aria-label="Search" value="@Model.SearchText" />
+                </td>
+
+                <td>
+                <a class="btn btn-outline-success btn-lg px-3 rounded-3 text-blsck ms-3" id="SearchButton" asp-controller="Referees" asp-action="SearchReference" asp-route-id="@Model.SearchText" class="btn btn-sm btn-primary ms-2">Search</a>
+                </td>
+            </tr>
+        </table>
+    <hr />
+    
+    <div class="text-left border-2 refereeTable">
+        <div class="col-1">
+            <!--<i class="fs-4 bi bi-arrow-counterclockwise"></i>-->
+            <label class="ms-2 text-black col-2" style="font-weight:700; font-size:larger;">References</label>
+        </div>
+
+        <div class="container-fluid text-left text-nowrap">
+            <table class="table table-striped candidates-table w-auto">
+            <tr>
+                
+                <th scope="col">Request Date</th>
+                <th scope="col">Remote Key</th>
+                <th scope="col">Question Set ID</th>
+                <th scope="col">Candidate Name</th>
+                <th scope="col">Referee Name</th>
+                <th scope="col">Referee Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Status</th>
+                <th scope="col">Agent Name</th>
+                <th scope="col"><i class="bi bi-bell-fill"></i></th> <!--Notifications-->
+                    <!--<th scope="col" align="right">Last Notification</th>-->
+                <th scope="col">Reminder / status</th>
+                <th scope="col">Action</th>
+
+                <!--<th scope="col">Modified Date</th>
+                <th scope="col">Relationship</th>
+                    <th scope="col">Id</th>-->
+            </tr>
+            @foreach (var referee in Model.refereeces)
+            {
+                <tr>
+                    
+                    <td>@referee.RequestDate.Value.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@referee.RemoteKey</td>
+                    <td>@referee.QuestionSetID</td>
+                    <td>@Html.DisplayFor(modelItem => referee.CandidateName)</td>
+                    <td>@referee.Name</td>
+                    <td>@Html.DisplayFor(modelItem => referee.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => referee.PhoneNumber)</td>
+                    <td>@referee.Status</td>
+                    <td>@Html.DisplayFor(modelItem => referee.SigName)</td>
+                    <td>@Html.DisplayFor(modelItem => referee.TotalReminders)</td>
+                    <!---->
+                    <td style="width: 10%;" id="reminderbtn_@referee.RequestID">
+
+                        @if (referee.Status != "Pending")// || referee.ModifiedDate == DateTime.Now.AddHours(-24))
+                        {
+                                if (referee.Status == "Completed")
+                                {
+                                    <span class="badge bg-success">@referee.Status <br> @referee.ModifiedDate.Value.ToString("yyyy-MM-dd HH:mm")</span>
+                                }
+                                else if (referee.Status == "Expired")
+                                {
+                                    <span class="badge bg-warning text-dark">@referee.Status <br> @referee.ModifiedDate.Value.ToString("yyyy-MM-dd HH:mm")</span>
+                                }
+                                else if (referee.Status == "Reference")
+                                {
+                                    <span class="badge bg-info text-dark">@referee.Status <br> @referee.ModifiedDate.Value.ToString("yyyy-MM-dd HH:mm")</span>
+                                }
+                                else if (referee.Status == "Cancelled")
+                                {
+                                    <span class="badge bg-danger">@referee.Status <br> @referee.ModifiedDate.Value.ToString("yyyy-MM-dd HH:mm")</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">@referee.Status <br> @referee.ModifiedDate.Value.ToString("yyyy-MM-dd HH:mm")</span>
+                                }
+                            }
+                            else
+                            {
+                                if (!String.IsNullOrEmpty(referee.LastReminder))
+                                {
+                                    if (referee.LastReminderDue)
+                                    {
+                                        <button onclick="sendReminder(@referee.RequestID)" class="btn btn-sm btn-primary m1-1"> Send Reminder</button>
+                                    }
+                                    else
+                                    {
+                                        DateTime tmpDate;
+                                        if (DateTime.TryParse(referee.LastReminder, out tmpDate))
+                                        {
+                                            <span class="badge bg-secondary">Reminder sent on<br>@tmpDate.ToString("yyyy-MM-dd HH:mm")</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">#Invalid Date</span>
+                                        }
+                                        
+                                    }
+                                } else
+                                {
+                                    <button onclick="sendReminder(@referee.RequestID)" class="btn btn-sm btn-primary m1-1"> Send Reminder</button>
+                                }
+                            }
+                    </td>
+                    <td style="width: 10%">
+                            @if ((referee.Status != "Completed") && ((referee.Status != "Cancelled")))
+                            {
+                                <a asp-action="EditForm" asp-route-id="@referee.RemoteKey" asp-route-index="@Model.PageIndex" class="btn btn-sm btn-primary ms-2" title="Edit questionnaire"><i class="bi bi-pencil-fill"></i></a>
+                                <button id="edtRefereeBtn" class="btn btn btn-sm btn-primary ms-2 refereeEdit" title="Edit Referee details" data-id="@referee.RequestID" data-bs-toggle="modal" data-bs-target="#referee-modal"><i class="bi bi-person"></i></button>
+                                <a asp-action="CancelRequest" asp-route-id="@referee.RequestID" asp-route-index="@Model.PageIndex" title="Cancel request" class="btn btn-sm btn-primary ms-2"><i class="bi bi-x-circle"></i></a>
+                            }
+                            else
+                            {
+                                <a asp-action="EditForm" asp-route-id="@referee.RemoteKey" asp-route-index="@Model.PageIndex" class="btn btn-sm btn-primary ms-2 disabled"><i class="bi bi-pencil-fill"></i></a>
+                                <button id="edtRefereeBtn" class="btn btn btn-sm btn-primary ms-2 refereeEdit disabled" data-id="@referee.RequestID" data-bs-toggle="modal" data-bs-target="#referee-modal"><i class="bi bi-person"></i></button>
+                                <a asp-action="CancelRequest" asp-route-id="@referee.RequestID" asp-route-index="@Model.PageIndex" class="btn btn-sm btn-primary ms-2 disabled"><i class="bi bi-x-circle"></i></a>
+                            }
+
+                    </td>
+                    <!--<td>@referee.ModifiedDate</td>
+                    <td style="width: 10%;">@Html.DisplayFor(modelItem => referee.Relationship)</td>
+                        <td>@referee.RequestID</td>-->
+                </tr>
+            }
+        </table>
+    </div>
+    </div>
+    <!-- Pagination -->
+    @if (String.IsNullOrEmpty(Model.SearchText))
+    {
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
+                    <a class="page-link" href="?pageIndex=1" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                        <a class="page-link" href="?pageIndex=@i">@i</a>
+                    </li>
+                }
+                <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="?pageIndex=@Model.TotalPages" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    }
+
+
+    <div class="modal modal-lg fade" id="referee-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add/Edit Referee Details</h5>
+                    <hr>
+                </div>
+
+                <div class="modal-body ">
+                </div>
+                <div class="modal-footer">
+                    
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('button.refereeEdit').on('click', function () {
+                //alert($(this).data('id'));
+                var base = '@baseAddressFE';
+                var action = `Referees/EditReferee?requestId=`;
+                const url = `${base}${action}${$(this).data('id')}`;
+
+                fetch(url)
+                    .then((response) => { return response.text(); })
+                    .then((result) => {
+                        $("#referee-modal").find(".modal-body").html(result);
+                        $("#referee-modal").modal('show');
+                    })
+                    .catch(error => {
+                        console.error("Error occurred while loading referee:", error);
+                    });
+
+                //alert(url);
+
+                //$('.referee-modal-body').load(url);
+                //$('.modal-body').load(`/referees/EditReferee?RequestId=${$(this).data('id')}`);
+            });
+        })
+
+        function sendReminder(requestId) {
+            var base = '@baseAddress';
+            var action = `Reminders/SendReminder/SendReminder?requestId=`;
+            const url = `${base}${action}${requestId}`;
+            // alert(url);
+            // alert(action);
+            // alert(requestId);
+            // Send AJAX request
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'text/plain',
+                    'MIEAuthorization': "Bearer " + '@Context.GetToken()'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Reminder sent successfully.");
+                        console.log("Reminder sent successfully.");
+                    } else {
+                        alert("Failed to send reminder.");
+                        console.error("Failed to send reminder.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error occurred while sending reminder:", error);
+                });
+        }
+
+        $(document).ready(function () {
+            // Attach an event listener to the input field
+            $('#filterInput').on('input', function () {
+                // Get the value from the input field
+                var inputValue = $(this).val();
+
+                var base = '@baseAddressFE';
+                var action = `Referees/SearchReference?id=`;
+                const url = `${base}${action}${inputValue}`;
+
+                // Update the href attribute of the anchor tag with the input value
+                $('#SearchButton').attr('href', url);
+            });
+        });
+
+        function sortTable(columnIndex) {
+            var table, rows, switching, i, x, y, shouldSwitch; SOm
+            table = document.querySelector(".candidates-table");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+
+    </script>
+}

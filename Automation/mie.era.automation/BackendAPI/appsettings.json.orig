@@ -1,0 +1,57 @@
+{
+  "JwtIssuerOptions": {
+    "Secret": "6f6d15f7-2b23-4d8f-85de-aae2c044ba7c",
+    "ValidAudiences": [ "ERA", "SOMEOTHER" ],
+    "HeaderName": "MIEAuthorization"
+  },
+
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "ConnectionStrings": {
+    //Development
+
+    //"QADBConnection": "Server=QA;Database=ERADB;Persist Security Info=True;User ID=zapman;Password=zapmon;MultipleActiveResultSets=True;",
+    //"QADBConnection": "Data Source=QA; Initial Catalog=ERADB;Integrated Security=true;Trusted_Connection=true;",
+    //"LinkUrl": "https://localhost:7060/api/Questionnaire/CreateReferenceLink/",
+    //"ReferenceCheckLink": "https://localhost:7060/api/Questionnaire/GetReferenceCheckFormByGUUID/",
+    //"RequestURL": "https://qaweb01/internal/services/EraRequestApi/",
+    //"AuthenticateURL": "https://qaweb01/internal/services/APIAuth/api/Authentication",
+    //"NoConsentURL": "javascript:noConsent()",
+    //"SendEmailURL": "https://qaweb01/internal/services/APIAuth/api/Email/SendEmail",
+    //"TokenURL": "https://qaweb01/internal/services/APIAuth/api/Authentication/authenticateDomain?applicationName=era",
+    //"_authApiUrl": "http://192.168.0.24/internal/services/APIAuth/api/Authentication/authenticateDomain?applicationName=era",
+    //"_smsApiUrl": "http://192.168.0.24/internal/services/APIAuth/api/SMS/SendSMS",
+    //"_emailApiUrl": "http://192.168.0.24/internal/services/APIAuth/api/Email/SendEmail",
+    //"CandidateEndpoint": "https://localhost:7060/",
+
+
+    
+       //QA
+      "DefaultConnection": "Server=Qa;Database=eradb;User Id=zapman;Password=zapmon",
+      "QADBConnection": "Server=QA;Database=ERADB;Persist Security Info=True;User ID=zapman;Password=zapmon;MultipleActiveResultSets=True;",
+      "LinkUrl": "http://qaweb01.miegalaxy.com/internal/services/EraBackendAPI/api/Questionnaire/CreateReferenceLink/",
+      "ReferenceCheckLink": "http://qaweb01.miegalaxy.com/internal/services/EraBackendAPI/api/Questionnaire/GetReferenceCheckFormByGUUID/",
+      "RequestURL": "https://qaweb01/internal/services/EraRequestApi/",
+      "AuthenticateURL": "https://qaweb01/internal/services/APIAuth/api/Authentication",
+      "NoConsentURL": "http://qaweb01.miegalaxy.com/internal/services/EraBackendAPI/api/Questionnaire/NoConsentToReference",
+      "SendEmailURL": "https://qaweb01/internal/services/APIAuth/",
+      "TokenURL": "https://qaweb01/internal/services/APIAuth/api/Authentication/authenticateDomain?applicationName=era",
+      "_authApiUrl": "http://192.168.0.24/internal/services/APIAuth/api/Authentication/authenticateDomain?applicationName=era",
+      "_smsApiUrl": "http://192.168.0.24/internal/services/APIAuth/api/SMS/SendSMS",
+      "_emailApiUrl": "http://192.168.0.24/internal/services/APIAuth/api/Email/SendEmail",
+      "CandidateEndpoint": "http://qaweb01.miegalaxy.com/internal/services/"
+    
+
+    
+  },
+<<<<<<< HEAD
+ "AllowedHosts": "*"
+=======
+
+  "AllowedHosts": "*"
+>>>>>>> origin/Thobani/feat/references
+}

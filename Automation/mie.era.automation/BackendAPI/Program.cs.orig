@@ -1,0 +1,85 @@
+global using BackendAPI.Database;
+using BackendAPI.Interfaces;
+using BackendAPI.Services;
+using Common.Authentication;
+using Microsoft.AspNetCore.Diagnostics;
+
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("*");
+                      });
+});
+
+
+
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<ERADBContext>();
+builder.Services.AddHttpClient();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:5173") // Add your frontend URL here
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+        });
+});
+
+builder.Services.AddTransient<IQuestionnaire, QuestionnaireService>();
+builder.Services.AddScoped<IDatabaseRepo, DatabaseService>();
+<<<<<<< HEAD
+builder.Services.AddTransient<IDashboard, DashboardService>();
+builder.Services.AddTransient<ICandidate, CandidateService>();
+builder.Services.AddScoped<StatisticsService>();
+builder.Services.AddTransient<CommsService>();
+builder.Services.AddScoped<RefereesService>();
+=======
+builder.Services.AddScoped<StatisticsService>();
+builder.Services.AddScoped<ReminderService>();
+builder.Services.AddScoped<RefereesService>();
+builder.Services.AddScoped<IDashboard, DashboardService>();
+
+//var jwtSettingSection = builder.Configuration.GetSection("JwtIssuerOptions");
+//builder.Services.Configure<JwtIssuerOptions>(jwtSettingSection);
+//var jwtSettings = jwtSettingSection.Get<JwtIssuerOptions>();
+>>>>>>> origin/Thobani/feat/references
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+//{
+  app.UseSwagger();
+  app.UseSwaggerUI();
+//}
+
+app.UseCors("AllowSpecificOrigin");
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseHttpsRedirection();
+app.UseCors(MyAllowSpecificOrigins);
+app.UseAuthorization();
+
+//app.UseMiddleware<ExceptionHandlerMiddleware>();
+//app.UseMiddleware<JwtMiddleware>();
+
+app.MapControllers();
+
+app.Run();

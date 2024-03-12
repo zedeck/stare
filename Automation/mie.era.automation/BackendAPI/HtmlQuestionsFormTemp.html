@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mie-Reference</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+  </link><style>.rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: start;
+      gap: 25px;
+
+    }
+
+    .rating>input {
+      display: none
+    }
+
+    .rating>label {
+      position: relative;
+      width: 1em;
+      font-size: 30px;
+      font-weight: 300;
+      color: #FFD600;
+      cursor: pointer
+    }
+
+    .rating>label::before {
+      content: "\2605";
+      position: absolute;
+      opacity: 0
+    }
+
+    .rating>label:hover:before,
+    .rating>label:hover~label:before {
+      opacity: 1 !important
+    }
+
+    .rating>input:checked~label:before {
+      opacity: 1
+    }
+
+    .rating:hover>input:checked~label:before {
+      opacity: 0.4
+    }</style>
+</head>
+<body>
+ <div class="row my-8 justify-content-center">
+		<div class="col-md-8">
+		<a class="navbar-brand" href="#">
+				<img src="https://qa.mie.co.za/Internal/Apps/epcv/images/mie2.png" width="80" height="60" alt="">
+		</a>
+		<br>
+		</div>
+		<br>
+	    
+</div> <div class="row my-8 justify-content-center bg-secondary text-dark bg-opacity-10">
+ <div class="col-md-8">
+        <br>
+		<h5 class="fw-bold" id="RefereeName">Hello Jayesh Stdcheck </h5>
+		<br>MIE assists organisations to identity the right talent by conducting factual competency-based employment references and background checks.<br>
+		Since past performance is often the best predictor of future performance, the best way to verify a candidate's background and job suitability is to conduct
+		a throrough reference check.<br>
+		As a referee, please make an objective assessment of the character and abilities of the candidate.<br>
+		Any additional comments which will help MIE to determine suitability of the candidate are appreciated.<br><br>This is a reference request from <span class="fw-bold">Managed Integrity Evaluation</span> with regards to <span class="fw-bold"> ERA Test4Mar2</span>. <br> Please take a few moments to fill out the below questionnaire. <br> Please answer each question by evaluating this candidate's skills compared to others in the workplace. <br> Rating type questions are given on a 1-5 scale, where 1 indicates that, compared to others in the workplace, ERA Test4Mar2 never uses this skill.likewise, a rating of 5 indicates that ERA Test4Mar2 uses these skills at all times. <br> Your honesty will be much appreciated and note that your response will not be shared with the candidate unless you request it.<br>
+		<br>
+		<p class="text-danger">
+		The information contained in this report is confidential and may be legally privilleged. 
+		The contents are solely for the use of client to whom it is addressed and other authorized individuals.
+		</p>
+		<br><p class="text-danger">If this request is not relevant to you or you wish to decline please <a class="link-opacity-100" href="javascript:noConsent('http://qaweb01.miegalaxy.com/internal/services/EraBackendAPI/api/Questionnaire/NoConsentToReference/guuid?guuid=e3338de6-b2eb-447b-a123-4071da3e1f84')"  id="nonConsent" title="noConsent">click here</a></p><br><div class="row my-8 justify-content-center">
+		<div class="col-md-6">
+            <div class="form-floating">
+			 
+                <span type="text" id="PcvNumber" name="PcvNumberControl">MIE Refence Number(PCV): <b>12201633-2</b><span>
+            </div>
+        </div>
+ 
+        <div class="col-md-6">
+            <div class="form-floating text-end">
+			  <span type="datetime" id="DateConducted" name="DateConductedCotrol" >Date Conducted: <b>2024/03/04 2:00:53 PM</b><span>
+		    </div>
+        </div>
+		</div>
+<hr><form  method="POST"
+  class="w-100 rounded-1 p-4 border bg-secondary text-dark bg-opacity-10 needs-validation" 
+  action="http://qaweb01.miegalaxy.com/internal/services/EraBackendAPI/api/Answers/PostAnswers"  enctype="multipart/form-data" novalidate>
+<h5 class="fw-bold">Please verify your details below:</h5>
+	<br>
+<div class="row my-8"> 
+<div class="col-md-6">
+<div class="form-floating">
+			 
+<input type="text" id="RefereeFirstNameControl" name="RefereeFirstName" class="form-control" value="Jayesh" required/>
+<label class="form-label" for="RefereeFirstNameControl">First name</label>
+<div class="invalid-feedback">
+	Please provide a valid first name.
+</div></div>
+</div>
+<div class="col-md-6">
+<div class="form-floating">
+			 
+<input type="text" id="RefereeLastNameControl" name="RefereeLastName" class="form-control" value="Stdcheck" required/>
+<label class="form-label" for="RefereeLastNameControl">Last name</label>
+<div class="invalid-feedback">
+	Please provide a valid last name.
+</div></div>
+</div>
+</div>
+	<br>
+	<div class="row my-8"> 
+<div class="col-md-6">
+<div class="form-floating">
+			 
+<input type="email" id="RefereeEmailControl" name="RefereeEmail" class="form-control" value="Jayeshg@mie.co.za" required/>
+<label class="form-label" for="RefereeEmailControl">Email</label>
+<div class="invalid-feedback">
+	Please provide a valid email.
+</div></div>
+</div>
+<div class="col-md-2">
+<div class="form-floating">
+			 
+<input type="tel" id="RefereeCountryControl" name="RefereeCountry" class="form-control"  value="" required/>
+<label class="form-label" for="RefereeCountryControl">Country</label>
+<div class="invalid-feedback">
+	Please provide a valid country name.
+</div></div>
+</div>
+		<div class="col-md-4">
+<div class="form-floating">
+			 
+<input type="text" id="RefereeMobileNumberControl" name="RefereeMobileNumber" class="form-control" value="0823368665" required/>
+<label class="input-group-addon" for="RefereeMobileNumberControl">Mobile number</label>
+<div class="invalid-feedback">
+	Please provide a valid mobile number.
+</div></div>
+</div>
+</div>
+	<br>
+	<div class="row my-8"> 
+<div class="col-md-3">
+<div class="form-floating">
+			 
+<input type="text" id="RefereeCompanyNameControl" name="RefereeCompanyName" class="form-control" value="" required/>
+<label class="form-label" for="RefereeCompanyNameControl">Company name</label>
+<div class="invalid-feedback">
+	Please provide a valid company name.
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="form-floating">
+			 
+<input type="text" id="ReferenceTypeControl" name="ReferenceType" class="form-control" value=""/ required>
+<label class="form-label" for="ReferenceTypeControl">Reference type</label>
+<div class="invalid-feedback">
+	Please provide a valid reference type.
+</div></div>
+</div>
+		<div class="col-md-3">
+<div class="form-floating">
+			 
+<input type="text" id="RefereeJobTitleControl" name="RefereeJobTitle" class="form-control" value="" required/>
+<label class="form-label" for="RefereeJobTitleControl">Referee job title</label>
+<div class="invalid-feedback">
+	Please provide a valid job title.
+</div></div>
+</div>
+		<div class="col-md-3">
+<div class="form-floating">
+			 
+<input type="text" id="RefereeSpecialityControl" name="RefereeSpeciality" class="form-control" value=""/>
+<label class="form-label" for="RefereeSpecialityControl">Speciality</label>
+</div>
+</div>
+</div>
+	<br>
+	<br>
+	
+	
+<hr class="my-1">	
+<br>
+<h5 class="fw-bold">Reference Questions</h5>
+<br>
+<div style="display: none;"><input  class="form-control visually-hidden" type="text" id="QuestionSetControl" name="QuestionSetID" value="1" ><br> 
+<input  class="form-control visually-hidden" type="text" id="RequestControl" name="RequestKey" value="12201633-2" ><br> 
+<input  class="form-control visually-hidden" type="text" id="RequestID" name="RequestID" value="643" ><br> 
+<input  class="form-control visually-hidden" type="text" id="RefereeName" name="RefereeName" value="Jayesh Stdcheck" ><br> 
+<input  class="form-control visually-hidden" type="text" id="CandidateName" name="CandidateName" value="ERA Test4Mar2" ><br> 
+<input  class="form-control visually-hidden" type="text" id="CandidateFirstName" name="CandidateFirstName" value="ERA" ><br> 
+<input  class="form-control visually-hidden" type="text" id="CandidateLastName" name="CandidateLastName" value="Test4Mar2" ><br> 
+<input  class="form-control visually-hidden" type="text" id="CandidateEmail" name="CandidateEmail" value="" ><br> 
+<input  class="form-control visually-hidden" type="text" id="RefereeID" name="RefereeID" value="638" ><br> 
+<input  class="form-control visually-hidden" type="text" id="ReferenceUUID" name="ReferenceUUID" value="e3338de6-b2eb-447b-a123-4071da3e1f84" ><br> 
+<input  class="form-control visually-hidden" type="text" id="AnswerWeight" name="AnswerWeight" value="0" ><br> 
+ </div> 
+<label class="d-block mb-4" for="Control126"> 
+ <span class="form-label d-block">Q1. At which company did you and the candidate work together?</span> 
+<input  class="form-control" type="text" id="Control126" name="TextInput-126" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control127"> 
+ <span class="form-label d-block">Q2. What was the candidate?s position?</span> 
+<input  class="form-control" type="text" id="Control127" name="TextInput-127" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control128"> 
+ <span class="form-label d-block">Q3. What was your position at the time of working with the candidate?</span> 
+<input  class="form-control" type="text" id="Control128" name="TextInput-128" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><span class="form-label d-block" for="Control129" >Q4. Did the candidate report into you directly?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-129" id="flexRadioDefault129No" value="No"> 
+<label class="form-check-label" for="flexRadioDefault129No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-129" id="flexRadioDefault129Yes" value="Yes" required>
+<label class="form-check-label" for="flexRadioDefault129Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><label class="d-block mb-4" for="Control130"> 
+ <span class="form-label d-block">Q5. What was the nature of your working relationship?</span> 
+<select class="form-select" id="Control130" name="DropDown-130" required>
+ <option selected></option>
+<option value=Current Employment>Current Employment</option>
+<option value=Previous Manager>Previous Manager</option>
+<option value=Current Manager>Current Manager</option>
+<option value=Senior Co-Worker>Senior Co-Worker</option>
+<option value=Co-Worker>Co-Worker</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control131"> 
+ <span class="form-label d-block">Q6. Please indicate the period that the candidate worked with you (estimation is adequate):</span> 
+<input  class="form-control" type="number" id="Control131" name="NumericInput-131" min="1" max="100" required> 
+<div class="invalid-feedback">
+	Please provide a valid numeric input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control133"> 
+ <span class="form-label d-block">Q7. How would you evaluate this individual?s attendance at work?</span> 
+<div class="rate py-3 mt-3"> <div class="form-control rating"><input type="radio" name="RatingInput-133" value="1" id="1-133" required><label for="1-133">&#9734;</label><input type="radio" name="RatingInput-133" value="2" id="2-133" required><label for="2-133">&#9734;</label><input type="radio" name="RatingInput-133" value="3" id="3-133" required><label for="3-133">&#9734;</label><input type="radio" name="RatingInput-133" value="4" id="4-133" required><label for="4-133">&#9734;</label><input type="radio" name="RatingInput-133" value="5" id="5-133" required><label for="5-133">&#9734;</label></div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control134"> 
+ <span class="form-label d-block">Q8. Were there any issues with tardiness or absenteeism?</span> 
+<input  class="form-control" type="text" id="Control134" name="TextInput-134" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><span class="form-label d-block" for="Control136" >Q10. Did the candidate ever misuse or abuse their Sick Leave?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-136" id="flexRadioDefault136No" value="No"  onclick="noradioFunction136()"> 
+<label class="form-check-label" for="flexRadioDefault136No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-136" id="flexRadioDefault136Yes" value="Yes" onclick="radioFunction136()" required>
+<label class="form-check-label" for="flexRadioDefault136Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault136"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><label class="d-block mb-4" for="Control138"> 
+ <span class="form-label d-block">Q12. What kind of duties and responsibilities were/are assigned to the candidate? (kindly name 4 or more)</span> 
+<textarea rows ="2" class="form-control" name="TextArea-138" id="Control138" required></textarea>
+<div class="invalid-feedback">
+	Please insert valid text .
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control139"> 
+ <span class="form-label d-block">Q13. How would you describe the candidate?s performance?</span> 
+<textarea rows ="2" class="form-control" name="TextArea-139" id="Control139" required></textarea>
+<div class="invalid-feedback">
+	Please insert valid text .
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control140"> 
+ <span class="form-label d-block">Q14. How would you rate the candidate?s ability to handle large volumes of work?</span> 
+<div class="rate py-3 mt-3"> <div class="form-control rating"><input type="radio" name="RatingInput-140" value="1" id="1-140" required><label for="1-140">&#9734;</label><input type="radio" name="RatingInput-140" value="2" id="2-140" required><label for="2-140">&#9734;</label><input type="radio" name="RatingInput-140" value="3" id="3-140" required><label for="3-140">&#9734;</label><input type="radio" name="RatingInput-140" value="4" id="4-140" required><label for="4-140">&#9734;</label><input type="radio" name="RatingInput-140" value="5" id="5-140" required><label for="5-140">&#9734;</label></div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control141"> 
+ <span class="form-label d-block">Q15. How would you rate the candidate?s quality of work?</span> 
+<div class="rate py-3 mt-3"> <div class="form-control rating"><input type="radio" name="RatingInput-141" value="1" id="1-141" required><label for="1-141">&#9734;</label><input type="radio" name="RatingInput-141" value="2" id="2-141" required><label for="2-141">&#9734;</label><input type="radio" name="RatingInput-141" value="3" id="3-141" required><label for="3-141">&#9734;</label><input type="radio" name="RatingInput-141" value="4" id="4-141" required><label for="4-141">&#9734;</label><input type="radio" name="RatingInput-141" value="5" id="5-141" required><label for="5-141">&#9734;</label></div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control142"> 
+ <span class="form-label d-block">Q16. Describe the individual?s ability to manage crisis, pressure or stress.</span> 
+<select class="form-select" id="Control142" name="DropDown-142" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Average>Average</option>
+<option value=Good>Good</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control143"> 
+ <span class="form-label d-block">Q17. Describe the individual?s interpersonal skills?</span> 
+<textarea rows ="2" class="form-control" name="TextArea-143" id="Control143" required></textarea>
+<div class="invalid-feedback">
+	Please insert valid text .
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control144"> 
+ <span class="form-label d-block">Q18. Describe the individual?s communication skills.</span> 
+<select class="form-select" id="Control144" name="DropDown-144" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Average>Average</option>
+<option value=Good>Good</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control145"> 
+ <span class="form-label d-block">Q19. Describe the individual?s overall work ethics?</span> 
+<input  class="form-control" type="text" id="Control145" name="TextInput-145" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control146"> 
+ <span class="form-label d-block">Q20. How does the candidate work with deadlines?</span> 
+<select class="form-select" id="Control146" name="DropDown-146" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Average>Average</option>
+<option value=Good>Good</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control147"> 
+ <span class="form-label d-block">Q21. Describe the candidate?s ability to learn and understand new concepts?</span> 
+<input  class="form-control" type="text" id="Control147" name="TextInput-147" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control148"> 
+ <span class="form-label d-block">Q22. How trustworthy is the candidate?</span> 
+<input  class="form-control" type="text" id="Control148" name="TextInput-148" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><span class="form-label d-block" for="Control149" >Q23. Did the individual demonstrate honesty and integrity?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-149" id="flexRadioDefault149No" value="No"  onclick="noradioFunction149()"> 
+<label class="form-check-label" for="flexRadioDefault149No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-149" id="flexRadioDefault149Yes" value="Yes" onclick="radioFunction149()" required>
+<label class="form-check-label" for="flexRadioDefault149Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault149"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><label class="d-block mb-4" for="Control151"> 
+ <span class="form-label d-block">Q25. In your opinion, what were this individual?s three (3) best attributes that made them stand out above other employees? Tick boxes with the option to choose maximum 3.</span> 
+<div class="rate py-3 mt-3"> <div class="form-control rating"><input type="radio" name="RatingInput-151" value="1" id="1-151" required><label for="1-151">&#9734;</label><input type="radio" name="RatingInput-151" value="2" id="2-151" required><label for="2-151">&#9734;</label><input type="radio" name="RatingInput-151" value="3" id="3-151" required><label for="3-151">&#9734;</label><input type="radio" name="RatingInput-151" value="4" id="4-151" required><label for="4-151">&#9734;</label><input type="radio" name="RatingInput-151" value="5" id="5-151" required><label for="5-151">&#9734;</label></div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control152"> 
+ <span class="form-label d-block">Q26. What area(s) of development could the candidate focus on?</span> 
+<textarea rows ="2" class="form-control" name="TextArea-152" id="Control152" required></textarea>
+<div class="invalid-feedback">
+	Please insert valid text .
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><span class="form-label d-block" for="Control153" >Q27. Was any disciplinary action taken?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-153" id="flexRadioDefault153No" value="No"  onclick="noradioFunction153()"> 
+<label class="form-check-label" for="flexRadioDefault153No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-153" id="flexRadioDefault153Yes" value="Yes" onclick="radioFunction153()" required>
+<label class="form-check-label" for="flexRadioDefault153Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault153"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><span class="form-label d-block" for="Control155" >Q29. Did the candidate abide by the company?s code of conduct?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-155" id="flexRadioDefault155No" value="No"  onclick="noradioFunction155()"> 
+<label class="form-check-label" for="flexRadioDefault155No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-155" id="flexRadioDefault155Yes" value="Yes" onclick="radioFunction155()" required>
+<label class="form-check-label" for="flexRadioDefault155Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault155"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><span class="form-label d-block" for="Control157" >Q31. Was there any occurrence of negligence on the part of the candidate?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-157" id="flexRadioDefault157No" value="No"  onclick="noradioFunction157()"> 
+<label class="form-check-label" for="flexRadioDefault157No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-157" id="flexRadioDefault157Yes" value="Yes" onclick="radioFunction157()" required>
+<label class="form-check-label" for="flexRadioDefault157Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault157"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><label class="d-block mb-4" for="Control159"> 
+ <span class="form-label d-block">Q33. Please confirm the candidate current working status at the company where you worked together.</span> 
+<select class="form-select" id="Control159" name="DropDown-159" required>
+ <option selected></option>
+<option value=Employed>Employed</option>
+<option value=Resigned>Resigned</option>
+<option value=Contract Ended>Contract Ended</option>
+<option value=Dismissed>Dismissed</option>
+<option value=Absconded>Absconded</option>
+<option value=Retrenched>Retrenched</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><span class="form-label d-block" for="Control160" >Q34. Would you re-employ or want to work with this individual again?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-160" id="flexRadioDefault160No" value="No"  onclick="noradioFunction160()"> 
+<label class="form-check-label" for="flexRadioDefault160No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-160" id="flexRadioDefault160Yes" value="Yes" onclick="radioFunction160()" required>
+<label class="form-check-label" for="flexRadioDefault160Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault160"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><span class="form-label d-block" for="Control162" >Q36. Would you recommend the candidate for future employment?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-162" id="flexRadioDefault162No" value="No"> 
+<label class="form-check-label" for="flexRadioDefault162No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-162" id="flexRadioDefault162Yes" value="Yes" required>
+<label class="form-check-label" for="flexRadioDefault162Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><label class="d-block mb-4" for="Control163"> 
+ <span class="form-label d-block">Q37. In your opinion, what kind of job is best suited for this individual's abilities?</span> 
+<input  class="form-control" type="text" id="Control163" name="TextInput-163" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control164"> 
+ <span class="form-label d-block">Q38. Is there anything of significance you'd like to add?</span> 
+<input  class="form-control" type="text" id="Control164" name="TextInput-164" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br> <div class="mb-3">
+ <button type="submit" id="submitForm" class="btn btn-primary btn-lg px-3 rounded-3">
+ Send Answers
+ </button>
+
+ <button type="button" id="saveForm" class="btn btn-secondary btn-lg px-3 rounded-3 ms-3 disabled">
+ Continue Later
+ </button> </div>
+</form> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"> </script> 
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+                integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> 
+<script>
+ (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})();
+function radioFunction136(){
+ if(document.getElementById("textArea136") ===null)
+{
+if(document.getElementById("flexInputDefault136").innerText !== "If Yes, please elaborate:"){ 
+document.getElementById("flexInputDefault136").innerText = "If Yes, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault136");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea136";
+textArea.rows = "2";
+textArea.className = "form-control";
+textArea.name = "TextInput-136";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction136(){
+ if(document.getElementById("textArea136") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault136");
+const remElement = document.getElementById("textArea136");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function radioFunction149(){
+ if(document.getElementById("textArea149") ===null)
+{
+if(document.getElementById("flexInputDefault149").innerText !== "If No, please elaborate:"){ 
+document.getElementById("flexInputDefault149").innerText = "If No, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault149");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea149";
+textArea.rows = "2";
+textArea.className =  "form-control";
+textArea.name = "TextInput-149";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction149(){
+ if(document.getElementById("textArea149") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault149");
+const remElement = document.getElementById("textArea149");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function radioFunction153(){
+ if(document.getElementById("textArea153") ===null)
+{
+if(document.getElementById("flexInputDefault153").innerText !== "If Yes, please elaborate:"){ 
+document.getElementById("flexInputDefault153").innerText = "If Yes, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault153");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea153";
+textArea.rows = "2";
+textArea.className = "form-control";
+textArea.name = "TextInput-153";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction153(){
+ if(document.getElementById("textArea153") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault153");
+const remElement = document.getElementById("textArea153");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function radioFunction155(){
+ if(document.getElementById("textArea155") ===null)
+{
+if(document.getElementById("flexInputDefault155").innerText !== "If No, please elaborate:"){ 
+document.getElementById("flexInputDefault155").innerText = "If No, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault155");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea155";
+textArea.rows = "2";
+textArea.className =  "form-control";
+textArea.name = "TextInput-155";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction155(){
+ if(document.getElementById("textArea155") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault155");
+const remElement = document.getElementById("textArea155");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function radioFunction157(){
+ if(document.getElementById("textArea157") ===null)
+{
+if(document.getElementById("flexInputDefault157").innerText !== "If Yes, please elaborate:"){ 
+document.getElementById("flexInputDefault157").innerText = "If Yes, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault157");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea157";
+textArea.rows = "2";
+textArea.className = "form-control";
+textArea.name = "TextInput-157";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction157(){
+ if(document.getElementById("textArea157") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault157");
+const remElement = document.getElementById("textArea157");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function radioFunction160(){
+ if(document.getElementById("textArea160") ===null)
+{
+if(document.getElementById("flexInputDefault160").innerText !== "If No, why not:"){ 
+document.getElementById("flexInputDefault160").innerText = "If No, why not:"; 
+}
+const eli =  document.getElementById("flexInputDefault160");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea160";
+textArea.rows = "2";
+textArea.className =  "form-control";
+textArea.name = "TextInput-160";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction160(){
+ if(document.getElementById("textArea160") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault160");
+const remElement = document.getElementById("textArea160");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+}; 
+   function noConsent(param) {
+ const response = confirm("Are you sure you want to leave?");
+ if (response) {
+ alert("We are Sorry for the inconvenience,we will alert our client.");
+ 
+ $.ajax({
+ type: "GET",
+ dataType: "json",
+ url: param,
+ success: function (data) {
+ alert(data);
+ },
+ error: function (error) {
+
+ jsonValue = jQuery.parseJSON(error.responseText);
+ alert("error" + error.responseText);
+ }
+ });
+
+ 
+ window.location.replace('https://mettus.co.za');
+ } else {
+ alert("Thank you for your support, Please continue.");
+ }
+ };$('#submitForm').click(function () {
+
+          const forms = document.querySelectorAll('.needs-validation')
+          Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+
+                $(form).find(".form-control:invalid").first().focus();
+
+              }
+
+              form.classList.add('was-validated')
+            }, false)
+
+          })
+
+          if ($('form')[0].checkValidity()) {
+
+            swal({
+              title: "Thank You!",
+              text: "Your answers are submitted successfully!",
+              type: "success"
+            }).then(function () {
+              window.location.replace('https://mettus.co.za');
+            });
+
+          }
+
+        });</script>
+  </div>
+</div>
+</div>
+</body>
+</html>

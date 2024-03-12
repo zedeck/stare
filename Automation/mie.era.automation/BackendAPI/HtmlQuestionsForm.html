@@ -1,0 +1,1121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mie-Reference</title>
+ <script src="https://code.jquery.com/jquery-3.7.1.js"
+></script> 
+<script src ="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+  </link><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"><style>.rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: start;
+      gap: 25px;
+
+    }
+
+    .rating>input {
+      display: none
+    }
+
+    .rating>label {
+      position: relative;
+      width: 1em;
+      font-size: 30px;
+      font-weight: 300;
+      color: #FFD600;
+      cursor: pointer
+    }
+
+    .rating>label::before {
+      content: "\2605";
+      position: absolute;
+      opacity: 0
+    }
+
+    .rating>label:hover:before,
+    .rating>label:hover~label:before {
+      opacity: 1 !important
+    }
+
+    .rating>input:checked~label:before {
+      opacity: 1
+    }
+
+    .rating:hover>input:checked~label:before {
+      opacity: 0.4
+    }</style>
+</head>
+<body>
+ <div class="row my-8 justify-content-center">
+		<div class="col-md-8">
+		<a class="navbar-brand" href="#">
+				<img src="https://qa.mie.co.za/Internal/Apps/epcv/images/mie2.png" width="80" height="60" alt="">
+		</a>
+		<br>
+		</div>
+		<br>
+	    
+</div> <div class="row my-8 justify-content-center bg-secondary text-dark bg-opacity-10">
+ <div class="col-md-8">
+        <br>
+		<h5 class="fw-bold" id="RefereeName">Hello Godwill Makhubela </h5>
+		<br>MIE assists organisations to identity the right talent by conducting factual competency-based employment references and background checks.<br>
+		Since past performance is often the best predictor of future performance, the best way to verify a candidate's background and job suitability is to conduct
+		a throrough reference check.<br>
+		As a referee, please make an objective assessment of the character and abilities of the candidate.<br>
+		Any additional comments which will help MIE to determine suitability of the candidate are appreciated.<br><br>This is a reference request from <span class="fw-bold">Managed Integrity Evaluation</span> with regards to <span class="fw-bold"> EraTest</span>. <br> Please take a few moments to fill out the below questionnaire. <br> Please answer each question by evaluating this candidate's skills compared to others in the workplace. <br> Rating type questions are given on a 1-5 scale, where 1 indicates that, compared to others in the workplace, EraTest never uses this skill.likewise, a rating of 5 indicates that EraTest uses these skills at all times. <br> Your honesty will be much appreciated and note that your response will not be shared with the candidate unless you request it.<br>
+		<br>
+		<p class="text-danger">
+		The information contained in this report is confidential and may be legally privilleged. 
+		The contents are solely for the use of client to whom it is addressed and other authorized individuals.
+		</p>
+		<br><p class="text-danger">If this request is not relevant to you or you wish to decline please <a class="link-opacity-100" href="javascript:noConsent('https://localhost:7060/api/Questionnaire/NoConsentToReference/guuid?guuid=29337e63-c6df-4bde-8136-a32c0effc756')"  id="nonConsent" title="noConsent">click here</a></p><br><div class="row my-8 justify-content-center">
+		<div class="col-md-6">
+            <div class="form-floating">
+			 
+                <span type="text" id="PcvNumber" name="PcvNumberControl">MIE Refence Number(PCV): <b>12201764-3</b><span>
+            </div>
+        </div>
+ 
+        <div class="col-md-6">
+            <div class="form-floating text-end">
+			  <span type="datetime" id="DateConducted" name="DateConductedCotrol" >Date Conducted: <b>2024/03/12 10:56:01</b><span>
+		    </div>
+        </div>
+		</div>
+<hr><form  method="POST"
+  class="w-100 rounded-1 p-4 border bg-secondary text-dark bg-opacity-10 needs-validation" 
+  action="https://localhost:7060/api/Answers/PostAnswers"  enctype="multipart/form-data" novalidate>
+<h5 class="fw-bold">Please verify your details below:</h5>
+	<br>
+<div class="row my-8"> 
+<div class="col-md-6">
+<div class="form-floating">
+			 
+<input type="text" id="RefereeFirstNameControl" name="RefereeFirstName" class="form-control" value="Godwill" required/>
+<label class="form-label" for="RefereeFirstNameControl">First name</label>
+<div class="invalid-feedback">
+	Please provide a valid first name.
+</div></div>
+</div>
+<div class="col-md-6">
+<div class="form-floating">
+			 
+<input type="text" id="RefereeLastNameControl" name="RefereeLastName" class="form-control" value="Makhubela" required/>
+<label class="form-label" for="RefereeLastNameControl">Last name</label>
+<div class="invalid-feedback">
+	Please provide a valid last name.
+</div></div>
+</div>
+</div>
+	<br>
+	<div class="row my-8"> 
+<div class="col-md-6">
+<div class="form-floating">
+			 
+<input type="email" id="RefereeEmailControl" name="RefereeEmail" class="form-control" value="godwillm@mie.co.za" required/>
+<label class="form-label" for="RefereeEmailControl">Email</label>
+<div class="invalid-feedback">
+	Please provide a valid email.
+</div></div>
+</div>
+<div class="col-md-2">
+<div class="form-floating">
+			 
+<input type="tel" readonly id="RefereeCountryControl" name="RefereeCountry" class="form-control"  value="Antigua and Barbuda" required/>
+<label class="form-label" for="RefereeCountryControl">Country</label>
+<div class="invalid-feedback">
+	Please provide a valid country name.
+</div></div>
+</div>
+		<div class="col-md-4">
+<div class="form-floating">
+			 
+<input type="text" id="RefereeMobileNumberControl" name="RefereeMobileNumber" class="form-control" value="0815920542" required/>
+<label class="input-group-addon" for="RefereeMobileNumberControl">Mobile number</label>
+<div class="invalid-feedback">
+	Please provide a valid mobile number.
+</div></div>
+</div>
+</div>
+	<br>
+	<div class="row my-8"> 
+<div class="col-md-3">
+<div class="form-floating">
+			 
+<input type="text" readonly id="RefereeCompanyNameControl" name="RefereeCompanyName" class="form-control" value="Mie" required/>
+<label class="form-label" for="RefereeCompanyNameControl">Company name</label>
+<div class="invalid-feedback">
+	Please provide a valid company name.
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="form-floating">
+			 
+<input type="text" readonly id="ReferenceTypeControl" name="ReferenceType" class="form-control" value="Character Reference - South Africa"/ required>
+<label class="form-label" for="ReferenceTypeControl">Reference type</label>
+<div class="invalid-feedback">
+	Please provide a valid reference type.
+</div></div>
+</div>
+		<div class="col-md-3">
+<div class="form-floating">
+			 
+<input type="text" readonly id="RefereeJobTitleControl" name="RefereeJobTitle" class="form-control" value="Not Specified" required/>
+<label class="form-label" for="RefereeJobTitleControl">Referee job title</label>
+<div class="invalid-feedback">
+	Please provide a valid job title.
+</div></div>
+</div>
+		<div class="col-md-3">
+<div class="form-floating">
+			 
+<input type="text" id="RefereeSpecialityControl" name="RefereeSpeciality" class="form-control" value=""/>
+<label class="form-label" for="RefereeSpecialityControl">Speciality</label>
+</div>
+</div>
+</div>
+	<br>
+	<br>
+	
+	
+<hr class="my-1">	
+<br>
+<h5 class="fw-bold">Reference Questions</h5>
+<br>
+<div style="display: none;"><input  class="form-control visually-hidden" type="text" id="QuestionSetControl" name="QuestionSetID" value="4" ><br> 
+<input  class="form-control visually-hidden" type="text" id="RequestControl" name="RequestKey" value="12201764-3" ><br> 
+<input  class="form-control visually-hidden" type="text" id="RequestID" name="RequestID" value="1172" ><br> 
+<input  class="form-control visually-hidden" type="text" id="RefereeName" name="RefereeName" value="Godwill Makhubela" ><br> 
+<input  class="form-control visually-hidden" type="text" id="CandidateName" name="CandidateName" value="EraTest" ><br> 
+<input  class="form-control visually-hidden" type="text" id="CandidateFirstName" name="CandidateFirstName" value="EraTest" ><br> 
+<input  class="form-control visually-hidden" type="text" id="CandidateLastName" name="CandidateLastName" value="Mer121" ><br> 
+<input  class="form-control visually-hidden" type="text" id="CandidateEmail" name="CandidateEmail" value="" ><br> 
+<input  class="form-control visually-hidden" type="text" id="RefereeID" name="RefereeID" value="145" ><br> 
+<input  class="form-control visually-hidden" type="text" id="ReferenceUUID" name="ReferenceUUID" value="29337e63-c6df-4bde-8136-a32c0effc756" ><br> 
+<input  class="form-control visually-hidden" type="text" id="AnswerWeight" name="AnswerWeight" value="0" ><br> 
+ </div> 
+<label class="d-block mb-4" for="Control1"> 
+ <span class="form-label d-block">Q1. At which company did you and the candidate work together?</span> 
+<input  class="form-control" type="text" id="Control1" name="TextInput-1" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control2"> 
+ <span class="form-label d-block">Q2. What was the candidate’s position?</span> 
+<input  class="form-control" type="text" id="Control2" name="TextInput-2" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control3"> 
+ <span class="form-label d-block">Q3. What was your position at the time of working with the candidate?</span> 
+<input  class="form-control" type="text" id="Control3" name="TextInput-3" required > 
+<div class="invalid-feedback">
+	Please provide a valid text input.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><span class="form-label d-block" for="Control4" >Q4. Did the candidate report into you directly?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-4" id="flexRadioDefault4No" value="No"> 
+<label class="form-check-label" for="flexRadioDefault4No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-4" id="flexRadioDefault4Yes" value="Yes" required>
+<label class="form-check-label" for="flexRadioDefault4Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><label class="d-block mb-4" for="Control5"> 
+ <span class="form-label d-block">Q5. What was the nature of your working relationship?</span> 
+<select class="form-select" id="Control5" name="DropDown-5" required>
+ <option selected></option>
+<option value=Previous Manager>Previous Manager</option>
+<option value=Current Manager>Current Manager</option>
+<option value=Co-Worker>Co-Worker</option>
+<option value=Senior Co-Worker>Senior Co-Worker</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control6"> 
+ <span class="form-label d-block">Q6. Please indicate the period that the candidate worked with you (estimation is adequate):</span> 
+<select class="form-select" id="Control6" name="DropDown-6" required>
+ <option selected></option>
+<option value=Less than 1 year>Less than 1 year</option>
+<option value=1 - 2 years>1 - 2 years</option>
+<option value=2 - 3 years>2 - 3 years</option>
+<option value=3 - 4 years>3 - 4 years</option>
+<option value=4 - 5 years>4 - 5 years</option>
+<option value=Between 5 and 10 years>Between 5 and 10 years</option>
+<option value=More than 10 years>More than 10 years</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control8"> 
+ <span class="form-label d-block">Q7. How would you evaluate this individual’s attendance at work?</span> 
+<div class="rate py-3 mt-3"> <div class="form-control rating"><input type="radio" name="RatingInput-8" value="5" id="1-8" required><label for="1-8">&#9734;</label><input type="radio" name="RatingInput-8" value="4" id="2-8" required><label for="2-8">&#9734;</label><input type="radio" name="RatingInput-8" value="3" id="3-8" required><label for="3-8">&#9734;</label><input type="radio" name="RatingInput-8" value="2" id="4-8" required><label for="4-8">&#9734;</label><input type="radio" name="RatingInput-8" value="1" id="5-8" required><label for="5-8">&#9734;</label></div></label> 
+<br>
+ <hr class="my-1">
+ <br><span class="form-label d-block" for="Control9" >Q8. Were there any issues with tardiness or absenteeism?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-9" id="flexRadioDefault9No" value="No"  onclick="noradioFunction9()"> 
+<label class="form-check-label" for="flexRadioDefault9No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-9" id="flexRadioDefault9Yes" value="Yes" onclick="radioFunction9()" required>
+<label class="form-check-label" for="flexRadioDefault9Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault9"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><span class="form-label d-block" for="Control11" >Q10. Did the candidate ever misuse or abuse their Sick Leave?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-11" id="flexRadioDefault11No" value="No"  onclick="noradioFunction11()"> 
+<label class="form-check-label" for="flexRadioDefault11No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-11" id="flexRadioDefault11Yes" value="Yes" onclick="radioFunction11()" required>
+<label class="form-check-label" for="flexRadioDefault11Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault11"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><label class="d-block mb-4" for="Control13"> 
+ <span class="form-label d-block">Q12. Did the candidate receive any promotions or demotions, or did the candidate remain in the same role throughout?</span> 
+<select class="form-select" id="Control13" name="DropDown-13" required>
+ <option selected></option>
+<option value=Promotion>Promotion</option>
+<option value=Demotion>Demotion</option>
+<option value=Remain in the same role>Remain in the same role</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control14"> 
+ <span class="form-label d-block">Q13. What kind of duties and responsibilities were/are assigned to the candidate? (kindly name 4 or more)</span> 
+<textarea rows ="2" class="form-control" name="TextArea-14" id="Control14" required></textarea>
+<div class="invalid-feedback">
+	Please insert valid text .
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control15"> 
+ <span class="form-label d-block">Q14. How would you describe the candidate’s performance?</span> 
+<div class="rate py-3 mt-3"> <div class="form-control rating"><input type="radio" name="RatingInput-15" value="5" id="1-15" required><label for="1-15">&#9734;</label><input type="radio" name="RatingInput-15" value="4" id="2-15" required><label for="2-15">&#9734;</label><input type="radio" name="RatingInput-15" value="3" id="3-15" required><label for="3-15">&#9734;</label><input type="radio" name="RatingInput-15" value="2" id="4-15" required><label for="4-15">&#9734;</label><input type="radio" name="RatingInput-15" value="1" id="5-15" required><label for="5-15">&#9734;</label></div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control16"> 
+ <span class="form-label d-block">Q15. How would you rate the candidate’s ability to handle large volumes of work?</span> 
+<div class="rate py-3 mt-3"> <div class="form-control rating"><input type="radio" name="RatingInput-16" value="5" id="1-16" required><label for="1-16">&#9734;</label><input type="radio" name="RatingInput-16" value="4" id="2-16" required><label for="2-16">&#9734;</label><input type="radio" name="RatingInput-16" value="3" id="3-16" required><label for="3-16">&#9734;</label><input type="radio" name="RatingInput-16" value="2" id="4-16" required><label for="4-16">&#9734;</label><input type="radio" name="RatingInput-16" value="1" id="5-16" required><label for="5-16">&#9734;</label></div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control17"> 
+ <span class="form-label d-block">Q16. How would you rate the candidate’s quality of work?</span> 
+<div class="rate py-3 mt-3"> <div class="form-control rating"><input type="radio" name="RatingInput-17" value="5" id="1-17" required><label for="1-17">&#9734;</label><input type="radio" name="RatingInput-17" value="4" id="2-17" required><label for="2-17">&#9734;</label><input type="radio" name="RatingInput-17" value="3" id="3-17" required><label for="3-17">&#9734;</label><input type="radio" name="RatingInput-17" value="2" id="4-17" required><label for="4-17">&#9734;</label><input type="radio" name="RatingInput-17" value="1" id="5-17" required><label for="5-17">&#9734;</label></div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control18"> 
+ <span class="form-label d-block">Q17. What would you say were the candidate’s major accomplishments in this position? Tick boxes, with the option to choose more than one.</span> 
+<select class="form-select" id="Control18" name="DropDown-18" required>
+ <option selected></option>
+<option value=Implementing major changes within the department or business>Implementing major changes within the department or business</option>
+<option value=Facilitating the startup of a new department or unit>Facilitating the startup of a new department or unit</option>
+<option value=Creating new material or processes within the department or business>Creating new material or processes within the department or business</option>
+<option value=Creating and/or implementing new strategies to improve efficiency>Creating and/or implementing new strategies to improve efficiency</option>
+<option value=Overall improvements within the business>Overall improvements within the business</option>
+<option value=Creating and/or implementing any automation within the business>Creating and/or implementing any automation within the business</option>
+<option value=Creating and/or implementing any cost saving initiatives>Creating and/or implementing any cost saving initiatives</option>
+<option value=Other (Please elaborate)>Other (Please elaborate)</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control19"> 
+ <span class="form-label d-block">Q18. Describe the individual’s ability to manage crisis, pressure or stress.</span> 
+<select class="form-select" id="Control19" name="DropDown-19" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control20"> 
+ <span class="form-label d-block">Q19. Describe the individual’s interpersonal skills?</span> 
+<select class="form-select" id="Control20" name="DropDown-20" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control21"> 
+ <span class="form-label d-block">Q20. Describe the individual’s communication skills.</span> 
+<select class="form-select" id="Control21" name="DropDown-21" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control22"> 
+ <span class="form-label d-block">Q21. Describe the individual’s overall work ethics?</span> 
+<select class="form-select" id="Control22" name="DropDown-22" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control23"> 
+ <span class="form-label d-block">Q22. How does the candidate work with deadlines?</span> 
+<select class="form-select" id="Control23" name="DropDown-23" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control24"> 
+ <span class="form-label d-block">Q23. Describe the candidate’s ability to learn and understand new concepts?</span> 
+<select class="form-select" id="Control24" name="DropDown-24" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control25"> 
+ <span class="form-label d-block">Q24. How would you describe the candidate’s ability to formulate strategies?</span> 
+<select class="form-select" id="Control25" name="DropDown-25" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control26"> 
+ <span class="form-label d-block">Q25. How would you describe the candidate’s ability to formulate business plans to achieve the overall business strategy?</span> 
+<select class="form-select" id="Control26" name="DropDown-26" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control27"> 
+ <span class="form-label d-block">Q26. How would you describe the candidate’s ability to lead?</span> 
+<textarea rows ="2" class="form-control" name="TextArea-27" id="Control27" required></textarea>
+<div class="invalid-feedback">
+	Please insert valid text .
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control28"> 
+ <span class="form-label d-block">Q27. How would you describe the candidate’s leadership style? Tick boxes, with the option to choose more than one.</span> 
+<select class="form-select" id="Control28" name="DropDown-28" required>
+ <option selected></option>
+<option value=Inspirational>Inspirational</option>
+<option value=Lead by example>Lead by example</option>
+<option value=Delegative>Delegative</option>
+<option value=Democratic>Democratic</option>
+<option value=Autocratic>Autocratic</option>
+<option value=Leading top down>Leading top down</option>
+<option value=Focused on personnel growth>Focused on personnel growth</option>
+<option value=Other>Other</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control29"> 
+ <span class="form-label d-block">Q28. Describe the individual’s ability to deal with organization or operational change.</span> 
+<select class="form-select" id="Control29" name="DropDown-29" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control30"> 
+ <span class="form-label d-block">Q29. How would you describe the candidate’s working relationships with various stakeholders?</span> 
+<select class="form-select" id="Control30" name="DropDown-30" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control31"> 
+ <span class="form-label d-block">Q30. How would you describe the candidate’s ability to follow corporate processes and rules.</span> 
+<select class="form-select" id="Control31" name="DropDown-31" required>
+ <option selected></option>
+<option value=Excellent>Excellent</option>
+<option value=Good>Good</option>
+<option value=Average>Average</option>
+<option value=Poor>Poor</option>
+<option value=Very Poor>Very Poor</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control32"> 
+ <span class="form-label d-block">Q31. Choose some of this individual’s core professional values (personality and character). Tick boxes with the option to choose more than one.</span> 
+<select class="form-select" id="Control32" name="DropDown-32" required>
+ <option selected></option>
+<option value=Honest>Honest</option>
+<option value=Work with integrity>Work with integrity</option>
+<option value=Hard working>Hard working</option>
+<option value=Moral>Moral</option>
+<option value=Compliant to the company guidelines>Compliant to the company guidelines</option>
+<option value=Admits to mistakes>Admits to mistakes</option>
+<option value=Report wrongdoing>Report wrongdoing</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control33"> 
+ <span class="form-label d-block">Q32. In your opinion, what were this individual’s three (3) best attributes that made them stand out above other employees? Tick boxes with the option to choose maximum 3.</span> 
+<select class="form-select" id="Control33" name="MultipleChoice-33" size="4" multiple="multiple" required>
+ <option selected></option>
+<option value=Communication>Communication</option>
+<option value=Interpersonal skills>Interpersonal skills</option>
+<option value=Quality of work>Quality of work</option>
+<option value=Willingness to learn>Willingness to learn</option>
+<option value=Ability to grasp the work quickly>Ability to grasp the work quickly</option>
+<option value=Motivated employee>Motivated employee</option>
+<option value=Hard working>Hard working</option>
+<option value=Ability to handle stress and pressure>Ability to handle stress and pressure</option>
+<option value=Adhering to deadlines>Adhering to deadlines</option>
+<option value=Task-orientated>Task-orientated</option>
+<option value=Adaptability>Adaptability</option>
+<option value=Others (Please elaborate)>Others (Please elaborate)</option>
+<option value=Others (Please elaborate)>Others (Please elaborate)</option>
+</select>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div><br>
+</label> 
+<br>
+ <hr class="my-1">
+ <br><label class="d-block mb-4" for="Control34"> 
+ <span class="form-label d-block">Q33. What area(s) of development could the candidate focus on?</span> 
+<textarea rows ="2" class="form-control" name="TextArea-34" id="Control34" required></textarea>
+<div class="invalid-feedback">
+	Please insert valid text .
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><span class="form-label d-block" for="Control35" >Q34. Was any disciplinary action taken?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-35" id="flexRadioDefault35No" value="No"  onclick="noradioFunction35()"> 
+<label class="form-check-label" for="flexRadioDefault35No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-35" id="flexRadioDefault35Yes" value="Yes" onclick="radioFunction35()" required>
+<label class="form-check-label" for="flexRadioDefault35Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault35"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><span class="form-label d-block" for="Control37" >Q36. Did the candidate abide by the company’s code of conduct?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-37" id="flexRadioDefault37No" value="No"  onclick="noradioFunction37()"> 
+<label class="form-check-label" for="flexRadioDefault37No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-37" id="flexRadioDefault37Yes" value="Yes" onclick="radioFunction37()" required>
+<label class="form-check-label" for="flexRadioDefault37Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault37"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><span class="form-label d-block" for="Control39" >Q38. Was there any occurrence of negligence on the part of the candidate?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-39" id="flexRadioDefault39No" value="No"  onclick="noradioFunction39()"> 
+<label class="form-check-label" for="flexRadioDefault39No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-39" id="flexRadioDefault39Yes" value="Yes" onclick="radioFunction39()" required>
+<label class="form-check-label" for="flexRadioDefault39Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault39"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><label class="d-block mb-4" for="Control41"> 
+ <span class="form-label d-block">Q40. Please confirm the candidate current working status at the company where you worked together.</span> 
+<select class="form-select" id="Control41" name="DropDown-41" required>
+ <option selected></option>
+<option value=Employed>Employed</option>
+<option value=Resigned>Resigned</option>
+<option value=Contract Ended>Contract Ended</option>
+<option value=Dismissed>Dismissed</option>
+<option value=Absconded>Absconded</option>
+<option value=Retrenched>Retrenched</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><span class="form-label d-block" for="Control42" >Q41. Would you re-employ or want to work with this individual again?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-42" id="flexRadioDefault42No" value="No"  onclick="noradioFunction42()"> 
+<label class="form-check-label" for="flexRadioDefault42No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-42" id="flexRadioDefault42Yes" value="Yes" onclick="radioFunction42()" required>
+<label class="form-check-label" for="flexRadioDefault42Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault42"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><span class="form-label d-block" for="Control44" >Q43. Would you recommend the candidate for future employment?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-44" id="flexRadioDefault44No" value="No"  onclick="noradioFunction44()"> 
+<label class="form-check-label" for="flexRadioDefault44No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-44" id="flexRadioDefault44Yes" value="Yes" onclick="radioFunction44()" required>
+<label class="form-check-label" for="flexRadioDefault44Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault44"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br><label class="d-block mb-4" for="Control45"> 
+ <span class="form-label d-block">Q44. In your opinion, what kind of job is best suited for this individual's abilities?</span> 
+<select class="form-select" id="Control45" name="DropDown-45" required>
+ <option selected></option>
+<option value=Communication>Communication</option>
+<option value=Interpersonal skills>Interpersonal skills</option>
+<option value=Quality of work>Quality of work</option>
+<option value=Willingness to learn>Willingness to learn</option>
+<option value=Ability to grasp the work quickly>Ability to grasp the work quickly</option>
+<option value=Motivated employee>Motivated employee</option>
+<option value=Hard working>Hard working</option>
+<option value=Ability to handle stress and pressure>Ability to handle stress and pressure</option>
+<option value=Adhering to deadlines>Adhering to deadlines</option>
+<option value=Task-orientated>Task-orientated</option>
+<option value=Adaptability>Adaptability</option>
+<option value=Others (Please elaborate)>Others (Please elaborate)</option>
+<option value=Others (Please elaborate)>Others (Please elaborate)</option>
+</select>
+<div class="invalid-feedback">
+	Please select an option.
+</div></label> 
+<br>
+ <hr class="my-1">
+ <br><span class="form-label d-block" for="Control46" >Q45. Is there anything which has not been covered by the questions which you would like to add?</span> 
+<fieldset>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-46" id="flexRadioDefault46No" value="No"  onclick="noradioFunction46()"> 
+<label class="form-check-label" for="flexRadioDefault46No">
+ No
+ </label>
+</div>
+<div>
+<input class="form-check-input" type="radio" name="YesNo-46" id="flexRadioDefault46Yes" value="Yes" onclick="radioFunction46()" required>
+<label class="form-check-label" for="flexRadioDefault46Yes">
+Yes
+ </label>
+<div class="invalid-feedback">
+	Please select a valid option.
+</div>
+</div>
+<div id="flexInputDefault46"> </div>
+</fieldset>
+<br>
+<hr class="my-1"> 
+<br> <div class="mb-3">
+ <button type="submit" id="submitForm" class="btn btn-primary btn-lg px-3 rounded-3">
+ Send Answers
+ </button>
+
+ <button type="button" id="saveForm" class="btn btn-secondary btn-lg px-3 rounded-3 ms-3 disabled">
+ Continue Later
+ </button> </div>
+</form> 
+<script>
+ (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})();
+function radioFunction9(){
+ if(document.getElementById("textArea9") ===null)
+{
+if(document.getElementById("flexInputDefault9").innerText !== "If Yes, please elaborate:"){ 
+document.getElementById("flexInputDefault9").innerText = "If Yes, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault9");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea9";
+textArea.rows = "2";
+textArea.className = "form-control";
+textArea.name = "TextInput-9";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction9(){
+ if(document.getElementById("textArea9") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault9");
+const remElement = document.getElementById("textArea9");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function radioFunction11(){
+ if(document.getElementById("textArea11") ===null)
+{
+if(document.getElementById("flexInputDefault11").innerText !== "If Yes, please elaborate:"){ 
+document.getElementById("flexInputDefault11").innerText = "If Yes, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault11");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea11";
+textArea.rows = "2";
+textArea.className = "form-control";
+textArea.name = "TextInput-11";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction11(){
+ if(document.getElementById("textArea11") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault11");
+const remElement = document.getElementById("textArea11");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function radioFunction35(){
+ if(document.getElementById("textArea35") ===null)
+{
+if(document.getElementById("flexInputDefault35").innerText !== "If Yes, please elaborate:"){ 
+document.getElementById("flexInputDefault35").innerText = "If Yes, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault35");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea35";
+textArea.rows = "2";
+textArea.className = "form-control";
+textArea.name = "TextInput-35";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction35(){
+ if(document.getElementById("textArea35") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault35");
+const remElement = document.getElementById("textArea35");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function noradioFunction37(){
+ if(document.getElementById("textArea37") ===null)
+{
+if(document.getElementById("flexInputDefault37").innerText !== "If No, please elaborate:"){ 
+document.getElementById("flexInputDefault37").innerText = "If No, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault37");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea37";
+textArea.rows = "2";
+textArea.className =  "form-control";
+textArea.name = "TextInput-37";
+eli.append(newline, newline2, textArea);
+}
+};
+function radioFunction37(){
+ if(document.getElementById("textArea37") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault37");
+const remElement = document.getElementById("textArea37");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function radioFunction39(){
+ if(document.getElementById("textArea39") ===null)
+{
+if(document.getElementById("flexInputDefault39").innerText !== "If Yes, please elaborate:"){ 
+document.getElementById("flexInputDefault39").innerText = "If Yes, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault39");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea39";
+textArea.rows = "2";
+textArea.className = "form-control";
+textArea.name = "TextInput-39";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction39(){
+ if(document.getElementById("textArea39") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault39");
+const remElement = document.getElementById("textArea39");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function noradioFunction42(){
+ if(document.getElementById("textArea42") ===null)
+{
+if(document.getElementById("flexInputDefault42").innerText !== "If No, please elaborate:"){ 
+document.getElementById("flexInputDefault42").innerText = "If No, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault42");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea42";
+textArea.rows = "2";
+textArea.className =  "form-control";
+textArea.name = "TextInput-42";
+eli.append(newline, newline2, textArea);
+}
+};
+function radioFunction42(){
+ if(document.getElementById("textArea42") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault42");
+const remElement = document.getElementById("textArea42");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function noradioFunction44(){
+ if(document.getElementById("textArea44") ===null)
+{
+if(document.getElementById("flexInputDefault44").innerText !== "If No, please elaborate:"){ 
+document.getElementById("flexInputDefault44").innerText = "If No, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault44");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea44";
+textArea.rows = "2";
+textArea.className =  "form-control";
+textArea.name = "TextInput-44";
+eli.append(newline, newline2, textArea);
+}
+};
+function radioFunction44(){
+ if(document.getElementById("textArea44") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault44");
+const remElement = document.getElementById("textArea44");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+};function radioFunction46(){
+ if(document.getElementById("textArea46") ===null)
+{
+if(document.getElementById("flexInputDefault46").innerText !== "If Yes, please elaborate:"){ 
+document.getElementById("flexInputDefault46").innerText = "If Yes, please elaborate:"; 
+}
+const eli =  document.getElementById("flexInputDefault46");
+const newline = document.createElement("br");
+newline.id = "newline1";
+const newline2 = document.createElement("br");
+newline2.id = "newline2";
+const textArea = document.createElement("textarea");
+textArea.id = "textArea46";
+textArea.rows = "2";
+textArea.className = "form-control";
+textArea.name = "TextInput-46";
+eli.append(newline, newline2, textArea);
+}
+};
+function noradioFunction46(){
+ if(document.getElementById("textArea46") !==null)
+{
+const rmQuestion = document.getElementById("flexInputDefault46");
+const remElement = document.getElementById("textArea46");
+const remLine1 = document.getElementById("newline1");
+const remLine2 = document.getElementById("newline2");
+rmQuestion.innerText = "";
+remLine1.remove();
+remLine2.remove();
+remElement.remove();
+}
+}; 
+   function noConsent(param) {
+ const response = confirm("Are you sure you want to leave?");
+ if (response) {
+ alert("We are Sorry for the inconvenience,we will alert our client.");
+ 
+ $.ajax({
+ type: "GET",
+ dataType: "json",
+ url: param,
+ success: function (data) {
+ alert(data);
+ },
+ error: function (error) {
+
+ jsonValue = jQuery.parseJSON(error.responseText);
+ alert("error" + error.responseText);
+ }
+ });
+
+ 
+ window.location.href ="http://qaweb01.miegalaxy.com/Internal/apps/era-mvc-int/api/Referees/Index"; 
+ } else {
+ alert("Thank you for your support, Please continue.");
+ }
+ };$('#submitForm').click(function () {
+
+          const forms = document.querySelectorAll('.needs-validation')
+          Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+
+                $(form).find("[class^='form-']:invalid").first().focus();
+
+              }
+
+              form.classList.add('was-validated')
+            }, false)
+
+          })
+
+          if ($('form')[0].checkValidity()) {
+
+            swal({
+              title: "Thank You!",
+              text: "Your answers are submitted successfully!",
+              type: "success"
+            }).then(function () {
+              window.location.href ="http://qaweb01.miegalaxy.com/Internal/apps/era-mvc-int/api/Referees/Index"; 
+            });
+
+          }
+
+        });</script>
+  </div>
+</div>
+</div>
+</body>
+</html>

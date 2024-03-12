@@ -1,0 +1,288 @@
+﻿@using static mie.era.mvc.Models.FELCandidateListViewModel;
+
+@{
+    ViewData["Title"] = "Candidates";
+   
+}
+
+<style>
+
+    .candidatesTable {
+        max-height: 600px !important;
+        overflow-y: auto !important;
+        background: #e9ede6 !important;
+    }
+
+    .tr:hover {
+        background-color: coral;
+    }
+   
+
+
+
+</style>
+
+
+
+
+<div class="container-fluid text-left border-bottom border-2 ">
+    
+    <!-- Candidates -->
+    <div id="candidateHeader">
+        <form class="d-flex row col-8">
+
+        <div class="col-12">
+            <i class="fs-3 bi bi-speedometer2 col-1"></i>
+            <label class="ms-2 text-black col-5" style="font-weight:700; font-size:larger;">@ViewBag.Message </label>
+        </div>
+
+        <div class="col-2 " style="position: absolute; right: 0;">
+            <div class="input-group date" id="datepicker">
+                <input type="text" class="form-control" id="date" />
+                <span class="input-group-append">
+                    <span class="input-group-text bg-light d-block">
+                        <i class="bi bi-calendar-fill"></i>
+                    </span>
+                </span>
+            </div>
+        </div>
+
+    </form>
+    <br />
+    <div class="row col-12">
+        <div class="d-flex col-4">
+            <div class="card text-white shadow" style="background-color: #008A8A;">
+                <div class="card-body dashboard">
+                    <div class="row col-12 p-0">
+                        <i class="bi bi-people fs-2 col-2"> </i>
+                        <span class="col-8 text-center">Total number of candidates </span>
+                        <div class="text-white col-12 text-center ms-2"><h5>@ViewBag.NumberOfCandidates</h5></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex col-4">
+            <div class="card text-white shadow" style="background-color: #008A8A;">
+                <div class="card-body dashboard">
+                    <div class="row col-12 p-0">
+                        <i class="bi bi-bar-chart-line fs-2 col-2"> </i>
+                        <span class="col-10 text-center">Completed References </span>
+                        <div class="text-white col-12 text-center ms-3 ">
+                            <h5>@ViewBag.CompletedReferences/@ViewBag.TotalReferences</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex col-4">
+            <div class="card text-white shadow" style="background-color: #008A8A;">
+                <div class="card-body dashboard">
+                    <div class="row col-12 p-0">
+                        <i class="bi bi-cast fs-2 col-2"> </i>
+                        <span class="col-10 text-center">Average Candidate Score</span>
+                        <div class="text-white col-12 text-center ms-3 "><h5>67/100</h5></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+    <br />
+
+
+</div>
+</div>
+<!-------------------->
+<div class="text-left border-2 candidatesTable"">
+    <div class="col-1">
+        <!--<i class="fs-4 bi bi-arrow-counterclockwise"></i>-->
+        <label class="ms-2 text-black col-2" style="font-weight:700; font-size:larger;">Candidates</label>
+    </div>
+   
+    <table class="table table-striped candidates-table display">
+
+         <thead>
+            <tr>
+                <th scope="col">Request Key</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">User Mobile Number</th>
+                <th scope="col">Score</th>
+                <th scope="col">Total References</th>
+                <th scope="col">Reference Status</th>
+                <th scope="col">Assigned To</th>
+                <th scope="col">Date Created</th>
+              
+            </tr>
+        </thead>
+        
+        <tbody>
+        @foreach (var item in ViewBag.model)
+        {
+        <tr class="candiData"  data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+            <td>@item.RequestKey </td>
+            <td>@item.FullName</td>
+            <td>@item.EmailAddress</td>
+            <td>@item.UIMobileNumber</td>
+            <td>@item.Score</td>
+            <td>@item.TotalReferences </td>
+            <td>@item.ReferenceStatus</td>
+            <td>@item.AssignedTo</td>
+            <td>@item.DateCreated</td>
+            </tr>
+         }
+         </tbody>
+
+         
+                      
+        
+    </table>
+
+    
+</div>
+
+
+
+
+<!-- Candidate DataEdit Modal Modal -->
+<div class="modal modal-lg fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add/Edit Candidate Details</h5>
+                <hr>
+            </div>
+            
+            <div class="modal-body ">
+              <form class="row-g3">
+                 <h5>Candidate Details</h5>
+                    <br>
+                    <div class="row my-8">
+                        <div class="col-md-4">
+                            <div class="form-floating">
+
+                                <input type="text" id="CandidateFirstNameControl" name="CandidateFirstName" class="form-control"
+                                       value="" required />
+                                <label class="form-label" for="CandidateFirstNameControl">Candidate First name</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid candidate's first name.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+
+                                <input type="text" id="CandidateSurenameControl" name="CandidateSurenameName" class="form-control"
+                                       value="" required />
+                                <label class="form-label" for="CandidateSurenameControl">Candidate Surname</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid candidate's surename.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+
+                                <input type="text" id="CandidateEmailControl" name="CandidateEmail" class="form-control"
+                                       value="" required />
+                                <label class="form-label" for="CandidateEmailControl"> Candidate Email</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid candidate's email.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row my-8">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+
+                                <input type="text" id="CandidateMobileNumberControl" name="CandidateMobileNumber" class="form-control"
+                                       value="" required />
+                                <label class="form-label" for="CandidateMobileNumberControl">Candidate Mobile Number</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid candidate's mobile number.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+
+                                <textarea type="textarea" id="InternalNotesControl" name="InternalNotes" class="form-control" rows="3"
+                                       value="" required> </textarea>
+                                @* <label class="form-label" for="InternalNotesControl">Internal Notes</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid notes.
+                                </div> *@
+                            </div>
+                        </div>
+                 
+             </form>
+                     
+             </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                 </div>
+                 
+
+            </div>
+    </div>
+</div>
+<!--------------------------->
+
+
+
+ @section scripts{
+
+    <script>
+        $(document).ready(function (model) {
+            $("candidatesTable").DataTable({
+                "ajax": {
+
+                    "url":"/",
+                    "type":"Get",
+                    "datatype":"json"
+                },
+                "columns":[
+                    {"data":""},
+                    { "data": "RequestKey" },
+                    { "data": "FullName" },
+                    { "data": "EmailAddress" },
+                    { "data": "UIMobileNumber" },
+                    { "data": "Score" },
+                    { "data": "TotalReferences" },
+                    { "data": "ReferenceStatus" },
+                    { "data": "AssignedTo" },
+                    { "data": "DateCreated" }
+                ]
+
+
+
+            });
+
+        });
+    </script>
+
+    <script>
+
+        function tableItemClicked(param) {
+            alert("Table item clicked!!! " + param);
+            // document.getElementById("demo");
+
+        };
+        </script>
+   
+
+<script>
+    function details(){
+        alert("Clicked Details!!!");
+           
+    };
+
+
+</script>
+
+
+   
+
+}

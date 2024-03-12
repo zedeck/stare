@@ -1,0 +1,550 @@
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using static BackendAPI.Services.RefereesService;
+
+namespace BackendAPI.Database
+{
+    public partial class ERADBContext : DbContext
+    {
+        public ERADBContext()
+        {
+        }
+
+        public ERADBContext(DbContextOptions<ERADBContext> options)
+            : base(options)
+        {
+        }
+
+        public virtual DbSet<AnswerOption> AnswerOptions { get; set; } = null!;
+        public virtual DbSet<AnswerOptionGroup> AnswerOptionGroups { get; set; } = null!;
+        public virtual DbSet<AnswerOptionsOld> AnswerOptionsOlds { get; set; } = null!;
+        public virtual DbSet<AnswerType> AnswerTypes { get; set; } = null!;
+        public virtual DbSet<InquiryManagerRequest> InquiryManagerRequests { get; set; } = null!;
+        public virtual DbSet<InternalNotification> InternalNotifications { get; set; } = null!;
+        public virtual DbSet<Notification> Notifications { get; set; } = null!;
+        public virtual DbSet<Parameter> Parameters { get; set; } = null!;
+        public virtual DbSet<Question> Questions { get; set; } = null!;
+        public virtual DbSet<QuestionSet> QuestionSets { get; set; } = null!;
+        public virtual DbSet<Referee> Referees { get; set; } = null!;
+        public virtual DbSet<RefereeAnswer> RefereeAnswers { get; set; } = null!;
+        public virtual DbSet<RefereeResponse> RefereeResponses { get; set; } = null!;
+        public virtual DbSet<ReferenceForm> ReferenceForms { get; set; } = null!;
+        public virtual DbSet<ReportTest> ReportTests { get; set; } = null!;
+        public virtual DbSet<Request> Requests { get; set; } = null!;
+        public virtual DbSet<Response> Responses { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<RefereeInfo> RefereesInfo { get; set; }
+<<<<<<< HEAD
+        public virtual DbSet<ReferenceExtendedData> ReferenceExtendedData { get; set; }
+=======
+       
+>>>>>>> godwillm/multiSelect
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=QA;Database=ERADB;Trusted_Connection=true;");
+            }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+<<<<<<< HEAD
+            modelBuilder.Entity<RefereesService.RefereeInfo>().HasNoKey();
+            modelBuilder.Entity<ReferenceExtendedData>().HasNoKey();
+
+=======
+>>>>>>> godwillm/multiSelect
+            modelBuilder.Entity<AnswerOption>(entity =>
+            {
+                entity.HasKey(e => new { e.AnswerGroupId, e.AnswerOptionId });
+
+                entity.Property(e => e.Value)
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.AnswerGroup)
+                    .WithMany(p => p.AnswerOptions)
+                    .HasForeignKey(d => d.AnswerGroupId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AnswerOptions_AnswerOptionGroup");
+            });
+
+            modelBuilder.Entity<AnswerOptionGroup>(entity =>
+            {
+                entity.HasKey(e => e.AnswerGroupId);
+
+                entity.ToTable("AnswerOptionGroup");
+
+                entity.Property(e => e.AnswerGroupId).ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(64)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<AnswerOptionsOld>(entity =>
+            {
+                entity.HasKey(e => e.AnswerOptionsId)
+                    .HasName("PK__AnswerOp__E218E1466EF3A601");
+
+                entity.ToTable("AnswerOptions.old");
+
+                entity.Property(e => e.AnswerOptionsId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("AnswerOptionsID");
+
+                entity.Property(e => e.CreatedDated).HasColumnType("date");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EndDate).HasColumnType("date");
+
+                entity.Property(e => e.OptionValues)
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.StartDate).HasColumnType("date");
+            });
+
+            modelBuilder.Entity<AnswerType>(entity =>
+            {
+                entity.Property(e => e.AnswerTypeId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("AnswerTypeID");
+
+                entity.Property(e => e.AnswerType1)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("AnswerType");
+
+                entity.Property(e => e.TypeName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<InquiryManagerRequest>(entity =>
+            {
+                entity.HasKey(e => e.InquiryId)
+                    .HasName("PK__InquiryM__05E6E7EF6E1D7987");
+
+                entity.Property(e => e.InquiryId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("InquiryID");
+
+                entity.Property(e => e.CompletionDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Credentials)
+                    .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.Property(e => e.InquiryDetails).IsUnicode(false);
+
+                entity.Property(e => e.InquiryStatus)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.InquiryType)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PcvNumber).HasColumnName("PCV_Number");
+
+                entity.Property(e => e.RequestId).HasColumnName("RequestID");
+
+                entity.Property(e => e.ReviewNotes).IsUnicode(false);
+
+                entity.HasOne(d => d.Request)
+                    .WithMany(p => p.InquiryManagerRequests)
+                    .HasForeignKey(d => d.RequestId)
+                    .HasConstraintName("FK_InquiryManagerRequests_Requests");
+            });
+
+            modelBuilder.Entity<InternalNotification>(entity =>
+            {
+                entity.Property(e => e.NotifyDate).HasColumnType("datetime");
+
+                entity.Property(e => e.RequestId).HasColumnName("RequestID");
+
+                entity.Property(e => e.SigEmail)
+                    .HasMaxLength(512)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SigUser)
+                    .HasMaxLength(512)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Request)
+                    .WithMany(p => p.InternalNotifications)
+                    .HasForeignKey(d => d.RequestId)
+                    .HasConstraintName("FK_InternalNotifications_Requests");
+            });
+
+            modelBuilder.Entity<Notification>(entity =>
+            {
+                entity.Property(e => e.NotificationId).HasColumnName("NotificationID");
+
+                entity.Property(e => e.Message).IsUnicode(false);
+
+                entity.Property(e => e.NotificationDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.NotificationStatus)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NotificationType)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RefereeId).HasColumnName("RefereeID");
+
+                entity.HasOne(d => d.Referee)
+                    .WithMany(p => p.Notifications)
+                    .HasForeignKey(d => d.RefereeId)
+                    .HasConstraintName("FK_Notifications_Referees");
+            });
+
+            modelBuilder.Entity<Parameter>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Parameter");
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(64)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Value).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Question>(entity =>
+            {
+                entity.Property(e => e.QuestionId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("QuestionID");
+
+                entity.Property(e => e.AnswerTypeId).HasColumnName("AnswerTypeID");
+
+                entity.Property(e => e.LeadingQuestionAnswer)
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.QuestionSetId).HasColumnName("QuestionSetID");
+
+                entity.Property(e => e.QuestionText)
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.AnswerGroup)
+                    .WithMany(p => p.Questions)
+                    .HasForeignKey(d => d.AnswerGroupId)
+                    .HasConstraintName("FK_Questions_AnswerOptionGroup");
+
+                entity.HasOne(d => d.AnswerType)
+                    .WithMany(p => p.Questions)
+                    .HasForeignKey(d => d.AnswerTypeId)
+                    .HasConstraintName("FK_Questions_AnswerTypes");
+
+                entity.HasOne(d => d.QuestionSet)
+                    .WithMany(p => p.Questions)
+                    .HasForeignKey(d => d.QuestionSetId)
+                    .HasConstraintName("FK_Questions_QuestionSet");
+            });
+
+            modelBuilder.Entity<QuestionSet>(entity =>
+            {
+                entity.ToTable("QuestionSet");
+
+                entity.Property(e => e.QuestionSetId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("QuestionSetID");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Referee>(entity =>
+            {
+                entity.Property(e => e.Refereeid).HasColumnName("REFEREEID");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PhoneNumber)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Relationship)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<RefereeAnswer>(entity =>
+            {
+                entity.HasKey(e => e.AnswersId)
+                    .HasName("PK__RefereeA__E5771E39195E04BB");
+
+                entity.Property(e => e.AnswersId).HasColumnName("AnswersID");
+
+                entity.Property(e => e.Answer)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AnswerDate).HasColumnType("datetime");
+
+                entity.Property(e => e.AnswerType)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CandidateFirstName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CandidateLastName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CandidateName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Question)
+                    .HasMaxLength(400)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.QuestionDate).HasColumnType("datetime");
+
+                entity.Property(e => e.QuestionId).HasColumnName("QuestionID");
+
+                entity.Property(e => e.QuestionnaireSetName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RefereeCompanyName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RefereeCountry)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RefereeEmail)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RefereeFirstName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RefereeId).HasColumnName("RefereeID");
+
+                entity.Property(e => e.RefereeJobTitle)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RefereeLastName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RefereeMobile)
+                    .HasMaxLength(13)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RefereeName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RefereeSpeciality)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ReferenceType)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RequestId).HasColumnName("RequestID");
+
+                entity.Property(e => e.RequestKey)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<RefereeResponse>(entity =>
+            {
+                entity.HasKey(e => e.AnswerId)
+                    .HasName("PK__RequestA__D48250241A1F03D4");
+
+                entity.ToTable("RefereeResponse");
+
+                entity.Property(e => e.AnswerId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("AnswerID");
+
+                entity.Property(e => e.AnswerDate).HasColumnType("datetime");
+
+                entity.Property(e => e.AnswerText).IsUnicode(false);
+
+                entity.Property(e => e.QuestionId).HasColumnName("QuestionID");
+
+                entity.Property(e => e.RequestId).HasColumnName("RequestID");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.Question)
+                    .WithMany(p => p.RefereeResponses)
+                    .HasForeignKey(d => d.QuestionId)
+                    .HasConstraintName("FK_RefereeResponse_Questions");
+
+                entity.HasOne(d => d.Request)
+                    .WithMany(p => p.RefereeResponses)
+                    .HasForeignKey(d => d.RequestId)
+                    .HasConstraintName("FK_RequestAnswers_Requests");
+            });
+
+            modelBuilder.Entity<ReferenceForm>(entity =>
+            {
+                entity.HasKey(e => e.FormId)
+                    .HasName("PK__Referenc__FB05B7BD24141E2F");
+
+                entity.Property(e => e.FormId).HasColumnName("FormID");
+
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreationDate).HasColumnType("datetime");
+
+                entity.Property(e => e.ExpiryDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Link)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RequestId).HasColumnName("RequestID");
+
+                entity.Property(e => e.UniqueId).HasColumnName("UniqueID");
+            });
+
+            modelBuilder.Entity<ReportTest>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Report_Test");
+
+                entity.Property(e => e.UsrId)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("USR_Id")
+                    .IsFixedLength();
+
+                entity.Property(e => e.UsrName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("USR_Name");
+            });
+
+            modelBuilder.Entity<Request>(entity =>
+            {
+                entity.Property(e => e.RequestId).HasColumnName("RequestID");
+
+                entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.QuestionSetId).HasColumnName("QuestionSetID");
+
+                entity.Property(e => e.RefereeId).HasColumnName("RefereeID");
+
+                entity.Property(e => e.RemoteKey)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RequestDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.Referee)
+                    .WithMany(p => p.Requests)
+                    .HasForeignKey(d => d.RefereeId)
+                    .HasConstraintName("FK_Requests_Referees");
+            });
+
+            modelBuilder.Entity<Response>(entity =>
+            {
+                entity.Property(e => e.ResponseId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ResponseID");
+
+                entity.Property(e => e.ApprovalDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Attachments).IsUnicode(false);
+
+                entity.Property(e => e.Comments).IsUnicode(false);
+
+                entity.Property(e => e.RejectionReason).IsUnicode(false);
+
+                entity.Property(e => e.RequestId).HasColumnName("RequestID");
+
+                entity.Property(e => e.ResponseByUserId).HasColumnName("ResponseByUserID");
+
+                entity.Property(e => e.ResponseDate).HasColumnType("datetime");
+
+                entity.Property(e => e.ResponseDetails).IsUnicode(false);
+
+                entity.Property(e => e.ResponseStatus)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ResponseType)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Score).HasColumnType("decimal(5, 2)");
+
+                entity.Property(e => e.VerificationDetails).IsUnicode(false);
+
+                entity.HasOne(d => d.Request)
+                    .WithMany(p => p.Responses)
+                    .HasForeignKey(d => d.RequestId)
+                    .HasConstraintName("FK_Responses_Requests");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.UserId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("UserID");
+
+                entity.Property(e => e.InternalPersonId).HasColumnName("InternalPersonID");
+
+                entity.Property(e => e.LastLogin).HasColumnType("datetime");
+            });
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    }
+}

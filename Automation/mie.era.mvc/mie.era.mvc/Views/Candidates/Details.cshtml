@@ -1,0 +1,111 @@
+﻿@model mie.era.mvc.Models.FELCandidateViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+
+
+
+    .box {
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #008A8A;
+        text-align: inherit;
+        transition: transform 0.3s ease;
+        background-color: #008A8A;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="card text-white shadow box">
+            
+                <div class="row">
+                    
+                 <div class="col-auto mr-auto ">
+                    <h1 class="col-sm-10">
+                            @Html.DisplayFor(model => model.CandidateName)
+                   </h1>
+                    <dl class="row">
+                                           
+                        <dt class="col-sm-3">
+                            @Html.DisplayNameFor(model => model.CandidateID):
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Html.DisplayFor(model => model.CandidateID)
+                        </dd>
+                        <dt class="col-sm-3">
+                            <i class="bi bi-mailbox2 fs-4 col-2 p-0"></i>
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Html.DisplayFor(model => model.CandidateEmail)
+                        </dd>
+                        <dt class="col-sm-3">
+                            <i class="bi bi-phone fs-4 col-2 p-0"></i>
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Html.DisplayFor(model => model.CandidateCell)
+                        </dd>
+                       
+                    </dl>
+                        </div>
+
+                <div class="col-2">
+                <div class="container">
+                        <div class="col-12">
+                    
+                    </div>
+                        <div>
+
+                            
+                            <button class="btn text-white" type="button" style="background-color: #ff1a1a;" onclick="location.href = '@Url.Action("Delete", "Delete", new {CandidateID = Model.CandidateID })'">
+                                <span class="bi bi-shield-x form-control-feedback"></span>
+                            </button>
+                            <span class="ms-3"></span>
+                            <button class="btn text-dark" type="button" style="background-color: #e4e4ed;" onclick="location.href = '@Url.Action("Edit", "Edit", new {CandidateID = Model.CandidateID })'">
+                                <span class="bi bi-pencil form-control-feedback"></span>
+                            </button>
+
+
+                           
+                        </div>
+                        
+                        <div class="row p-3">
+                            <select class="form-select" name="status" id="status">
+                                <option selected></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+
+                        
+                </div>
+                </div>
+
+                                            
+                   
+                
+                    
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
